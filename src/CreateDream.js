@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 import TextInput from './TextInput';
 
 const CreateDream = (props) => {
   const [email, setEmail] = useState('');
-  const [elementIDs, setElementIDs] = useState('');
+  const [element_ids, setElement_ids] = useState('');
   const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
+  const [description, setDescription] = useState('');
   return (
     <div>
       <TextInput 
@@ -23,8 +25,8 @@ const CreateDream = (props) => {
         label="Element IDs"
         placeholder="Enter element IDs"
         subText="Comma seperated" 
-        value={elementIDs} 
-        handleChange={setElementIDs}/>
+        value={element_ids} 
+        handleChange={setElement_ids}/>
 
       <TextInput 
         type="text" 
@@ -40,8 +42,21 @@ const CreateDream = (props) => {
         label="Description"
         placeholder="Enter dream description"
         subText="Optional" 
-        value={desc} 
-        handleChange={setDesc}/>
+        value={description} 
+        handleChange={setDescription}/>
+
+      <Button variant="primary" onClick={() => {
+        axios.post('https://send-dreams.herokuapp.com/dreams', {
+            email,
+            element_ids,
+            title,
+            description,
+          })
+          .then(response => console.log(response))
+          .catch(err => console.log(err));
+        }}>
+        Submit
+      </Button>
     </div>
   )
 }
