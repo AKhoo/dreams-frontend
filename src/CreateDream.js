@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import TextInput from './TextInput';
@@ -8,6 +8,18 @@ const CreateDream = (props) => {
   const [element_ids, setElement_ids] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    axios.get('https://send-dreams.herokuapp.com/elements')
+      .then(({ data }) => {
+        const elementList = {};
+        data.data.forEach(element => {
+          elementList[element.id] = element;
+        });
+        console.log(elementList);
+      });
+  }, []);
+
   return (
     <div>
       <TextInput 
