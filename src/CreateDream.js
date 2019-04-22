@@ -11,7 +11,6 @@ const CreateDream = (props) => {
   const [email, setEmail] = useState('');
   const [elementList, setElementList] = useState([]);
   const [selectedElement, setSelectedElement] = useState('');
-  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const { elementsData, storeElementsData } = props;
 
@@ -50,6 +49,7 @@ const CreateDream = (props) => {
 
         <FormInput 
           type="email" 
+          isRequired={true}
           controlId="CreateDreamEmail" 
           label="Email address"
           placeholder="Enter email"
@@ -59,18 +59,11 @@ const CreateDream = (props) => {
 
         <FormInput 
           type="text" 
-          controlId="CreateDreamTitle" 
-          label="Title"
-          placeholder="Enter dream title"
-          value={title} 
-          handleChange={setTitle}/>
-
-        <FormInput 
-          type="text" 
+          isRequired={true}
           controlId="CreateDreamDesc" 
           label="Description"
           placeholder="Enter dream description"
-          subText="Optional" 
+          subText="Describe your dream" 
           value={description} 
           handleChange={setDescription}/>
 
@@ -78,7 +71,6 @@ const CreateDream = (props) => {
           axios.post('https://send-dreams.herokuapp.com/dreams', {
               email,
               element_ids: elementsData[selectedElement].id,
-              title,
               description,
             })
             .then(response => console.log(response))
