@@ -25,6 +25,7 @@ const CreateDream = (props) => {
         });
         storeElementsData(elementDataObj);
         setElementList(elementList);
+        setSelectedElement(elementList[0]);
       });
   }, []);
 
