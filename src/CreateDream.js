@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import FormInput from './FormInput';
@@ -31,51 +32,62 @@ const CreateDream = (props) => {
 
   return (
     <div>
-      <FormInput 
-        type="email" 
-        controlId="CreateDreamEmail" 
-        label="Email address"
-        placeholder="Enter email"
-        subText="We'll never share your email with anyone else." 
-        value={email} 
-        handleChange={setEmail}/>
+      <h1>What Does Your Dream Say?</h1>
 
       <FormSelect 
         controlId="CreateDreamElement" 
-        label="Primary Element"
+        label="What was the most prominent symbol in your dream?"
         options={elementList}
         value={selectedElement} 
         handleChange={setSelectedElement}/>
 
-      <FormInput 
-        type="text" 
-        controlId="CreateDreamTitle" 
-        label="Title"
-        placeholder="Enter dream title"
-        value={title} 
-        handleChange={setTitle}/>
+      <div className="createDreamDetails">
+        <Image src="https://img.icons8.com/ios-glyphs/30/000000/corgi.png" rounded />
+        <h2>{selectedElement}</h2>
+        <p>{selectedElement ? elementsData[selectedElement].attributes.commentary : ''}</p>
 
-      <FormInput 
-        type="text" 
-        controlId="CreateDreamDesc" 
-        label="Description"
-        placeholder="Enter dream description"
-        subText="Optional" 
-        value={description} 
-        handleChange={setDescription}/>
+        <p>If you had a good omen, you can donate your dream to give someone else good luck!</p>
 
-      <Button variant="primary" onClick={() => {
-        axios.post('https://send-dreams.herokuapp.com/dreams', {
-            email,
-            element_ids: elementsData[selectedElement].id,
-            title,
-            description,
-          })
-          .then(response => console.log(response))
-          .catch(err => console.log(err));
-        }}>
-        Submit
-      </Button>
+        <FormInput 
+          type="email" 
+          controlId="CreateDreamEmail" 
+          label="Email address"
+          placeholder="Enter email"
+          subText="We'll never share your email with anyone else." 
+          value={email} 
+          handleChange={setEmail}/>
+
+        <FormInput 
+          type="text" 
+          controlId="CreateDreamTitle" 
+          label="Title"
+          placeholder="Enter dream title"
+          value={title} 
+          handleChange={setTitle}/>
+
+        <FormInput 
+          type="text" 
+          controlId="CreateDreamDesc" 
+          label="Description"
+          placeholder="Enter dream description"
+          subText="Optional" 
+          value={description} 
+          handleChange={setDescription}/>
+
+        <Button variant="primary" onClick={() => {
+          axios.post('https://send-dreams.herokuapp.com/dreams', {
+              email,
+              element_ids: elementsData[selectedElement].id,
+              title,
+              description,
+            })
+            .then(response => console.log(response))
+            .catch(err => console.log(err));
+          }}>
+          Donate My Dream
+        </Button>
+      </div>
+
     </div>
   )
 }
