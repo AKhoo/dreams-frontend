@@ -2,30 +2,35 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import { connect } from 'react-redux'
-import TextInput from './TextInput';
-import { setElementList } from './actions';
+import FormInput from './FormInput';
+import FormSelect from './FormSelect';
+import { setElementsData } from './actions';
 
 const CreateDream = (props) => {
   const [email, setEmail] = useState('');
-  const [element_ids, setElement_ids] = useState('');
+  const [elementList, setElementList] = useState([]);
+  const [selectedElement, setSelectedElement] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const { storeElementList } = props;
+  const { elementsData, storeElementsData } = props;
 
   useEffect(() => {
     axios.get('https://send-dreams.herokuapp.com/elements')
       .then(({ data }) => {
-        const elementList = {};
+        const elementDataObj = {};
+        const elementList = [];
         data.data.forEach(element => {
-          elementList[element.id] = element;
+          elementDataObj[element.attributes.name] = element;
+          elementList.push(element.attributes.name);
         });
-        storeElementList(elementList);
+        storeElementsData(elementDataObj);
+        setElementList(elementList);
       });
   }, []);
 
   return (
     <div>
-      <TextInput 
+      <FormInput 
         type="email" 
         controlId="CreateDreamEmail" 
         label="Email address"
@@ -34,16 +39,14 @@ const CreateDream = (props) => {
         value={email} 
         handleChange={setEmail}/>
 
-      <TextInput 
-        type="text" 
-        controlId="CreateDreamElementIDs" 
-        label="Element IDs"
-        placeholder="Enter element IDs"
-        subText="Comma seperated" 
-        value={element_ids} 
-        handleChange={setElement_ids}/>
+      <FormSelect 
+        controlId="CreateDreamElement" 
+        label="Primary Element"
+        options={elementList}
+        value={selectedElement} 
+        handleChange={setSelectedElement}/>
 
-      <TextInput 
+      <FormInput 
         type="text" 
         controlId="CreateDreamTitle" 
         label="Title"
@@ -51,7 +54,7 @@ const CreateDream = (props) => {
         value={title} 
         handleChange={setTitle}/>
 
-      <TextInput 
+      <FormInput 
         type="text" 
         controlId="CreateDreamDesc" 
         label="Description"
@@ -63,7 +66,7 @@ const CreateDream = (props) => {
       <Button variant="primary" onClick={() => {
         axios.post('https://send-dreams.herokuapp.com/dreams', {
             email,
-            element_ids,
+            element_ids: elementsData[selectedElement].id,
             title,
             description,
           })
@@ -78,13 +81,13 @@ const CreateDream = (props) => {
 
 const mapStateToProps = state => {
   return {
-    elementList:state.elementList,
+    elementsData:state.elementsData,
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    storeElementList: (elementList) => dispatch(setElementList(elementList)),
+    storeElementsData: (elementsData) => dispatch(setElementsData(elementsData)),
   }
 }
 

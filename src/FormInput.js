@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 
-const TextInput = (props) => {
+const FormInput = (props) => {
   const {controlId, label, type, placeholder, subText, value, handleChange} = props;
   return (
     <div>
@@ -23,4 +23,4 @@ const TextInput = (props) => {
   )
 }
 
-export default TextInput;
+export default FormInput;

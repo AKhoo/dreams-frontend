@@ -1,8 +1,8 @@
-const setElementList = (elementList) => {
+const setElementsData = (elementsData) => {
   return {
-    type: 'SET_ELEMENTLIST',
-    payload: elementList,
+    type: 'SET_ELEMENTSDATA',
+    payload: elementsData,
   }
 }
 
-export { setElementList };
+export { setElementsData };

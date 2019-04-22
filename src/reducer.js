@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-const elementList = (state = {}, action) => {
-  if (action.type === 'SET_ELEMENTLIST') {
+const elementsData = (state = {}, action) => {
+  if (action.type === 'SET_ELEMENTSDATA') {
     return action.payload;
   } else {
     return state;
@@ -9,7 +9,7 @@ const elementList = (state = {}, action) => {
 }
 
 const rootReducer = combineReducers({
-  elementList,
+  elementsData,
 });
 
 export default rootReducer;
