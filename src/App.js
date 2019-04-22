@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import CreateDream from './CreateDream';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import CreateDream from './CreateDream';
+import rootReducer from './reducer';
 import './App.css';
 
-const store = createStore(() => {});
+const store = createStore(
+  rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 class App extends Component {
   render() {

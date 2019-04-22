@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+import { connect } from 'react-redux'
 import TextInput from './TextInput';
+import { setElementList } from './actions';
 
 const CreateDream = (props) => {
   const [email, setEmail] = useState('');
   const [element_ids, setElement_ids] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const { storeElementList } = props;
 
   useEffect(() => {
     axios.get('https://send-dreams.herokuapp.com/elements')
@@ -16,7 +19,7 @@ const CreateDream = (props) => {
         data.data.forEach(element => {
           elementList[element.id] = element;
         });
-        console.log(elementList);
+        storeElementList(elementList);
       });
   }, []);
 
@@ -73,4 +76,16 @@ const CreateDream = (props) => {
   )
 }
 
-export default CreateDream;
+const mapStateToProps = state => {
+  return {
+    elementList:state.elementList,
+  }
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    storeElementList: (elementList) => dispatch(setElementList(elementList)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateDream);
