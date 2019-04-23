@@ -5,7 +5,7 @@ import axios from 'axios';
 import { connect } from 'react-redux'
 import FormInput from './FormInput';
 import FormSelect from './FormSelect';
-import { setElementsData } from './actions';
+import { setElementsData, getElements, postDream } from './actions';
 
 const CreateDream = (props) => {
   const [email, setEmail] = useState('');
@@ -15,17 +15,17 @@ const CreateDream = (props) => {
   const { elementsData, storeElementsData } = props;
 
   useEffect(() => {
-    axios.get('https://send-dreams.herokuapp.com/elements')
+    getElements()
       .then(({ data }) => {
         const elementDataObj = {};
-        const elementList = [];
+        const elementListArr = [];
         data.data.forEach(element => {
           elementDataObj[element.attributes.name] = element;
-          elementList.push(element.attributes.name);
+          elementListArr.push(element.attributes.name);
         });
         storeElementsData(elementDataObj);
-        setElementList(elementList);
-        setSelectedElement(elementList[0]);
+        setElementList(elementListArr);
+        setSelectedElement(elementListArr[0]);
       });
   }, []);
 
@@ -68,11 +68,11 @@ const CreateDream = (props) => {
           handleChange={setDescription}/>
 
         <Button variant="primary" onClick={() => {
-          axios.post('https://send-dreams.herokuapp.com/dreams', {
-              email,
-              element_ids: elementsData[selectedElement].id,
-              description,
-            })
+          postDream({
+            email,
+            element_ids: elementsData[selectedElement].id,
+            description,
+          })
             .then(response => console.log(response))
             .catch(err => console.log(err));
           }}>
