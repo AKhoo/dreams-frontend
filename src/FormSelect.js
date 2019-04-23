@@ -12,7 +12,9 @@ const FormSelect = (props) => {
             as="select" 
             value={value}
             onChange={(e) => handleChange(e.target.value)}>
-            {options.map((optionItem) => <option key={optionItem}>{optionItem}</option>)}
+            {Object.keys(options).map((elementId) => {
+              return <option key={elementId}>{options[elementId].attributes.name}</option>
+            })}
           </Form.Control>
         </Form.Group>
       </Form>

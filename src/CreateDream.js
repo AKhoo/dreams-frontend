@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import axios from 'axios';
 import { connect } from 'react-redux'
 import FormInput from './FormInput';
 import FormSelect from './FormSelect';
@@ -9,23 +8,19 @@ import { setElementsData, getElements, postDream } from './actions';
 
 const CreateDream = (props) => {
   const [email, setEmail] = useState('');
-  const [elementList, setElementList] = useState([]);
   const [selectedElement, setSelectedElement] = useState('');
   const [description, setDescription] = useState('');
-  const { elementsData, storeElementsData } = props;
+  const {elementsData, storeElementsData} = props;
 
   useEffect(() => {
     getElements()
       .then(({ data }) => {
         const elementDataObj = {};
-        const elementListArr = [];
         data.data.forEach(element => {
-          elementDataObj[element.attributes.name] = element;
-          elementListArr.push(element.attributes.name);
+          elementDataObj[element.id] = element;
         });
         storeElementsData(elementDataObj);
-        setElementList(elementListArr);
-        setSelectedElement(elementListArr[0]);
+        setSelectedElement(data.data[0].attributes.name);
       });
   }, []);
 
@@ -36,14 +31,14 @@ const CreateDream = (props) => {
       <FormSelect 
         controlId="CreateDreamElement" 
         label="What was the most prominent symbol in your dream?"
-        options={elementList}
+        options={elementsData}
         value={selectedElement} 
         handleChange={setSelectedElement}/>
 
       <div className="createDreamDetails">
         <Image src="https://img.icons8.com/ios-glyphs/30/000000/corgi.png" rounded />
         <h2>{selectedElement}</h2>
-        <p>{selectedElement ? elementsData[selectedElement].attributes.commentary : ''}</p>
+        {/* <p>{selectedElement ? elementsData[selectedElement].attributes.commentary : ''}</p> */}
 
         <p>If you had a good omen, you can donate your dream to give someone else good luck!</p>
 
