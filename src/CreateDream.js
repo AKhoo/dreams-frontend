@@ -8,7 +8,10 @@ import { setElementsData, getElements, postDream } from './actions';
 
 const CreateDream = (props) => {
   const [email, setEmail] = useState('');
-  const [selectedElement, setSelectedElement] = useState('');
+  const [selectedElement, setSelectedElement] = useState({
+    name: '',
+    id: '',
+  });
   const [description, setDescription] = useState('');
   const {elementsData, storeElementsData} = props;
 
@@ -20,7 +23,10 @@ const CreateDream = (props) => {
           elementDataObj[element.id] = element;
         });
         storeElementsData(elementDataObj);
-        setSelectedElement(data.data[0].attributes.name);
+        setSelectedElement({
+          name: data.data[0].attributes.name,
+          id: data.data[0].id,
+        });
       });
   }, []);
 
@@ -32,13 +38,13 @@ const CreateDream = (props) => {
         controlId="CreateDreamElement" 
         label="What was the most prominent symbol in your dream?"
         options={elementsData}
-        value={selectedElement} 
+        selectedElement={selectedElement} 
         handleChange={setSelectedElement}/>
 
       <div className="createDreamDetails">
         <Image src="https://img.icons8.com/ios-glyphs/30/000000/corgi.png" rounded />
-        <h2>{selectedElement}</h2>
-        {/* <p>{selectedElement ? elementsData[selectedElement].attributes.commentary : ''}</p> */}
+        <h2>{selectedElement.name}</h2>
+        <p>{elementsData[selectedElement.id] ? elementsData[selectedElement.id].attributes.commentary : ''}</p>
 
         <p>If you had a good omen, you can donate your dream to give someone else good luck!</p>
 
@@ -65,7 +71,7 @@ const CreateDream = (props) => {
         <Button variant="primary" onClick={() => {
           postDream({
             email,
-            element_ids: elementsData[selectedElement].id,
+            element_ids: selectedElement.id,
             description,
           })
             .then(response => console.log(response))
