@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 
-const FormSelect = (props) => {
+const ElementSelect = (props) => {
   const {controlId, label, options, selectedElement, handleChange} = props;
   return (
     <div>
@@ -32,4 +32,4 @@ const FormSelect = (props) => {
   )
 }
 
-export default FormSelect;
+export default ElementSelect;
