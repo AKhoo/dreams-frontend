@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux'
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import { connect } from 'react-redux'
+import Form from 'react-bootstrap/Form';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
 import ElementSelect from './ElementSelect';
@@ -49,37 +50,42 @@ const CreateDream = (props) => {
 
         <p>If you had a good omen, you can donate your dream to give someone else good luck!</p>
 
-        <FormInput 
-          type="email" 
-          isRequired={true}
-          controlId="CreateDreamEmail" 
-          label="Email address"
-          placeholder="Enter email"
-          subText="We'll never share your email with anyone else." 
-          value={email} 
-          handleChange={setEmail}/>
+        <Form
+          onSubmit = {(e) => {
+            e.preventDefault();
+            postDream({
+              email,
+              element_ids: selectedElement.id,
+              description,
+            })
+              .then(response => console.log(response))
+              .catch(err => console.log(err));
+            }}
+          >
+          <FormInput 
+            type="email" 
+            isRequired={true}
+            controlId="CreateDreamEmail" 
+            label="Email address"
+            placeholder="Enter email"
+            subText="We'll never share your email with anyone else." 
+            value={email} 
+            handleChange={setEmail}/>
 
-        <FormTextarea 
-          rows={3} 
-          isRequired={true}
-          controlId="CreateDreamDesc" 
-          label="Description"
-          placeholder="Enter dream description"
-          subText="Describe your dream" 
-          value={description} 
-          handleChange={setDescription}/>
+          <FormTextarea 
+            rows={3} 
+            isRequired={true}
+            controlId="CreateDreamDesc" 
+            label="Description"
+            placeholder="Enter dream description"
+            subText="Describe your dream" 
+            value={description} 
+            handleChange={setDescription}/>
 
-        <Button variant="primary" onClick={() => {
-          postDream({
-            email,
-            element_ids: selectedElement.id,
-            description,
-          })
-            .then(response => console.log(response))
-            .catch(err => console.log(err));
-          }}>
-          Donate My Dream
-        </Button>
+          <Button type="submit" variant="primary">
+            Donate My Dream
+          </Button>
+        </Form>
       </div>
 
     </div>
