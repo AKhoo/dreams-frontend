@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import { connect } from 'react-redux'
 import FormInput from './FormInput';
+import FormTextarea from './FormTextarea';
 import ElementSelect from './ElementSelect';
 import { setElementsData, getElements, postDream } from './actions';
 
@@ -58,8 +59,8 @@ const CreateDream = (props) => {
           value={email} 
           handleChange={setEmail}/>
 
-        <FormInput 
-          type="text" 
+        <FormTextarea 
+          rows={3} 
           isRequired={true}
           controlId="CreateDreamDesc" 
           label="Description"
