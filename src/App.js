@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import Modal from 'react-bootstrap/Modal';
-import Spinner from 'react-bootstrap/Spinner';
 import CreateDream from './CreateDream';
+import SpinnerModal from './SpinnerModal';
 import rootReducer from './reducer';
 import './App.css';
 
@@ -17,10 +16,7 @@ export class App extends Component {
       <Provider store={store}>
         <div className="App">
           <CreateDream/>
-          <Modal show={true} centered dialogClassName="loadingModal">
-            Spinner Active
-            <Spinner animation="border" />
-          </Modal>
+          <SpinnerModal/>
         </div>
       </Provider>
     );

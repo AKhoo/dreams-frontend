@@ -92,9 +92,9 @@ const CreateDream = (props) => {
   )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({elementsData}) => {
   return {
-    elementsData:state.elementsData,
+    elementsData,
   }
 };
 
