@@ -7,3 +7,12 @@
   border: 1px solid lightgray;
   padding: 10px;
 }
+
+.loadingModal .modal-content {
+  background-color: transparent;
+  border: 0px;
+}
+
+.loadingModal .spinner-border {
+  margin: auto;
+}
