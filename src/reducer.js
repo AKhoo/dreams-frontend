@@ -16,9 +16,18 @@ const loadState = (state = false, action) => {
   }
 };
 
+const messages = (state = [], action) => {
+  if (action.type === 'ADD_MESSAGE') {
+    return [...state, action.payload];
+  } else {
+    return state;
+  }
+}
+
 const rootReducer = combineReducers({
   elementsData,
   loadState,
+  messages,
 });
 
 export default rootReducer;

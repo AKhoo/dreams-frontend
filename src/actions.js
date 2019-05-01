@@ -8,11 +8,37 @@ export const setElementsData = (elementsData) => {
   }
 }
 
-export const setLoadState = (isLoading) => {
+const setLoadState = (isLoading) => {
   return {
     type: 'SET_LOADSTATE',
     payload: isLoading,
   }
+}
+
+const addMessage = (text, alertVariant) => {
+  return {
+    type: 'ADD_MESSAGE',
+    payload: {
+      text,
+      alertVariant,
+    },
+  }
+}
+
+const makeNetworkRequest = (method, url, data) => {
+  return new Promise((resolve, reject) => {
+    store.dispatch(setLoadState(true));
+    axios[method](url, data)
+      .then(data => {
+        store.dispatch(setLoadState(false));
+        resolve(data);
+      })
+      .catch(err => {
+        store.dispatch(setLoadState(false));
+        store.dispatch(addMessage(err.message, 'danger'));
+        reject(err);
+      });
+  });
 }
 
 export const getElements = () => {
@@ -21,11 +47,12 @@ export const getElements = () => {
     // Redux store: Loading = true;
     // At the app level, whenever Loading = true, have spinner active
   // Then, if success, setLoadState(false) 
-  // Then, if error, setLoadState(false) and setMessage(???)
-  // Add a component to App.js that 
-  return axios.get('https://send-dreams.herokuapp.com/elements');
+  // Then, if error, setLoadState(false) and addMessage(???)
+    // Messages component should display all messages
+    // Clicking on dismiss should remove the selected message fro UI
+  return makeNetworkRequest('get', 'https://send-dreams.herokuapp.com/elements');
 }
 
 export const postDream = (data) => {
-  return axios.post('https://send-dreams.herokuapp.com/dreams', data);
+  return makeNetworkRequest('post', 'https://send-dreams.herokuapp.com/dreams', data);
 }

@@ -6,8 +6,7 @@ import Spinner from 'react-bootstrap/Spinner';
 const SpinnerModal = (props) => {
   const {loadState} = props;
   return (
-    <Modal show={loadState} centered dialogClassName="loadingModal">
-      Spinner Active
+    <Modal show={loadState} centered dialogClassName="loadingModal" backdropClassName="loadingModalBackdrop">
       <Spinner animation="border" />
     </Modal>
   )

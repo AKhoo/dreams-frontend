@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import CreateDream from './CreateDream';
 import SpinnerModal from './SpinnerModal';
+import Messages from './Messages';
 import rootReducer from './reducer';
 import './App.css';
 
@@ -15,6 +16,7 @@ export class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
+          <Messages/>
           <CreateDream/>
           <SpinnerModal/>
         </div>

@@ -16,3 +16,8 @@
 .loadingModal .spinner-border {
   margin: auto;
 }
+
+.loadingModalBackdrop {
+  background-color: white;
+  opacity: 0.6;
+}
