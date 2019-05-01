@@ -15,7 +15,7 @@ const setLoadState = (isLoading) => {
   }
 }
 
-const addMessage = (text, alertVariant) => {
+export const addMessage = (text, alertVariant) => {
   return {
     type: 'ADD_MESSAGE',
     payload: {

@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
 import ElementSelect from './ElementSelect';
-import { setElementsData, getElements, postDream } from './actions';
+import { setElementsData, getElements, postDream, addMessage} from './actions';
 
 const CreateDream = (props) => {
   const [email, setEmail] = useState('');
@@ -15,7 +15,7 @@ const CreateDream = (props) => {
     id: '',
   });
   const [description, setDescription] = useState('');
-  const {elementsData, storeElementsData} = props;
+  const {elementsData, storeElementsData, addSuccessMessage} = props;
 
   useEffect(() => {
     getElements()
@@ -58,7 +58,7 @@ const CreateDream = (props) => {
               element_ids: selectedElement.id,
               description,
             })
-              .then(response => console.log(response))
+              .then(() => addSuccessMessage('Dream successfully submitted. Thank you!'))
               .catch(err => console.log(err));
             }}
           >
@@ -100,6 +100,7 @@ const mapStateToProps = ({elementsData}) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    addSuccessMessage: text => dispatch(addMessage(text, 'success')),
     storeElementsData: (elementsData) => dispatch(setElementsData(elementsData)),
   }
 }
