@@ -59,7 +59,6 @@ const CreateDream = (props) => {
               description,
             })
               .then(() => addSuccessMessage('Dream successfully submitted. Thank you!'))
-              .catch(err => console.log(err));
             }}
           >
           <FormInput 

@@ -35,7 +35,7 @@ const makeNetworkRequest = (method, url, data) => {
       })
       .catch(err => {
         store.dispatch(setLoadState(false));
-        store.dispatch(addMessage(err.message, 'danger'));
+        store.dispatch(addMessage(err.response.data.error, 'danger'));
         reject(err);
       });
   });
