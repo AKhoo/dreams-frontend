@@ -28,10 +28,19 @@ const messages = (state = [], action) => {
   }
 };
 
+const selectedDream = (state = {}, action) => {
+  if (action.type === 'SET_SELECTEDDREAM') {
+    return action.payload;
+  } else {
+    return state;
+  }
+};
+
 const rootReducer = combineReducers({
   elementsData,
   loadState,
   messages,
+  selectedDream,
 });
 
 export default rootReducer;

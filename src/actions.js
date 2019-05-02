@@ -42,20 +42,20 @@ const makeNetworkRequest = (method, url, data) => {
   });
 };
 
+export const getRandomDream = () => {
+  return makeNetworkRequest('get', 'https://send-dreams.herokuapp.com/dreams/random');
+}
+
+export const setSelectedDream = (dreamData) => {
+  return {
+    type: 'SET_SELECTEDDREAM',
+    payload: dreamData,
+  }
+}
+
 export const getElements = () => {
-  // Initiate get request
-  // Then, dispatch setLoadState(true)
-  // Redux store: Loading = true;
-  // At the app level, whenever Loading = true, have spinner active
-  // Then, if success, setLoadState(false)
-  // Then, if error, setLoadState(false) and addMessage(???)
-  // Messages component should display all messages
-  // Clicking on dismiss should remove the selected message fro UI
-  return makeNetworkRequest(
-    'get',
-    'https://send-dreams.herokuapp.com/elements',
-  );
-};
+  return makeNetworkRequest('get', 'https://send-dreams.herokuapp.com/elements');
+}
 
 export const postDream = data => {
   return makeNetworkRequest(
