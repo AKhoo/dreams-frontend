@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -8,6 +8,7 @@ import CreateDream from './CreateDream';
 import SpinnerModal from './SpinnerModal';
 import Messages from './Messages';
 import rootReducer from './reducer';
+import { setElementsData, getElements, postDream, addMessage} from './actions';
 import './css/app.css';
 import './css/landing.css';
 import './css/create-dream.css';
@@ -18,6 +19,18 @@ export const store = createStore(
 );
 
 export class App extends Component {
+
+  componentDidMount() {
+    getElements()
+      .then(({ data }) => {
+        const elementDataObj = {};
+        data.data.forEach(element => {
+          elementDataObj[element.id] = element;
+        });
+        store.dispatch(setElementsData(elementDataObj));
+      });
+  }
+
   render() {
     return (
       <Provider store={store}>

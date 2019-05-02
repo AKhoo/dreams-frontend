@@ -11,25 +11,11 @@ import { setElementsData, getElements, postDream, addMessage } from './actions';
 const CreateDream = props => {
   const [email, setEmail] = useState('');
   const [selectedElement, setSelectedElement] = useState({
-    name: '',
-    id: '',
+    name: elementsData ? elementsData[0].attributes.name : '',
+    id: elementsData ? elementsData[0].id : '',
   });
   const [description, setDescription] = useState('');
-  const { elementsData, storeElementsData, addSuccessMessage } = props;
-
-  useEffect(() => {
-    getElements().then(({ data }) => {
-      const elementDataObj = {};
-      data.data.forEach(element => {
-        elementDataObj[element.id] = element;
-      });
-      storeElementsData(elementDataObj);
-      setSelectedElement({
-        name: data.data[0].attributes.name,
-        id: data.data[0].id,
-      });
-    });
-  }, []);
+  const {elementsData, addSuccessMessage} = props;
 
   return (
     <div>
@@ -113,9 +99,8 @@ const mapStateToProps = ({ elementsData }) => {
 const mapDispatchToProps = dispatch => {
   return {
     addSuccessMessage: text => dispatch(addMessage(text, 'success')),
-    storeElementsData: elementsData => dispatch(setElementsData(elementsData)),
-  };
-};
+  }
+}
 
 export default connect(
   mapStateToProps,
