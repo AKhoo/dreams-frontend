@@ -4,7 +4,7 @@
         "es6": true
     },
     "extends": [
-        "airbnb",
+        "prettier",
         "eslint:recommended",
         "plugin:react/recommended"
     ],
@@ -23,5 +23,13 @@
         "react"
     ],
     "rules": {
+        "no-unused-vars": [
+            "error", {
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_"
+            }
+        ],
+        "react/prop-types": [0],
+        "react/display-name": [0]
     }
 }

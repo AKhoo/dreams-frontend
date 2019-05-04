@@ -5,7 +5,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
-    "eslint-config-airbnb": "^17.1.0",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
@@ -18,7 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "fix": "eslint src --fix && prettier --write 'src/**/**.js'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,6 +32,10 @@
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
-    "babel-loader": "^8.0.5"
+    "babel-eslint": "^9.0.0",
+    "babel-loader": "^8.0.5",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.10.0",
+    "prettier": "1.17.0"
   }
 }

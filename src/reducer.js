@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
 const elementsData = (state = {}, action) => {
   if (action.type === 'SET_ELEMENTSDATA') {
@@ -26,7 +26,7 @@ const messages = (state = [], action) => {
   } else {
     return state;
   }
-}
+};
 
 const rootReducer = combineReducers({
   elementsData,
