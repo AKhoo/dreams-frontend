@@ -8,7 +8,9 @@ import CreateDream from './CreateDream';
 import SpinnerModal from './SpinnerModal';
 import Messages from './Messages';
 import rootReducer from './reducer';
-import './App.css';
+import './css/app.css';
+import './css/landing.css';
+import './css/create-dream.css';
 
 export const store = createStore(
   rootReducer,
@@ -24,7 +26,7 @@ export class App extends Component {
           <Router>
             <Route path="/" exact component={Landing} />
             <Route path="/send" exact component={SendDream} />
-            <Route path="/create/" component={CreateDream} />
+            <Route path="/donate" exact component={CreateDream} />
           </Router>
           <SpinnerModal />
         </div>
