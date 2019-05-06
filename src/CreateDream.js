@@ -1,12 +1,21 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+=======
+import React, { useState } from 'react';
+import { connect } from 'react-redux'
+>>>>>>> 4459a32... Show dream element name and description
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
 import ElementSelect from './ElementSelect';
+<<<<<<< HEAD
 import { setElementsData, getElements, postDream, addMessage } from './actions';
+=======
+import {  postDream, addMessage} from './actions';
+>>>>>>> 4459a32... Show dream element name and description
 
 const CreateDream = props => {
   const [email, setEmail] = useState('');

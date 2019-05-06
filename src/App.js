@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -8,7 +8,7 @@ import CreateDream from './CreateDream';
 import SpinnerModal from './SpinnerModal';
 import Messages from './Messages';
 import rootReducer from './reducer';
-import { setElementsData, getElements, postDream, addMessage} from './actions';
+import { setElementsData, getElements } from './actions';
 import './css/app.css';
 import './css/landing.css';
 import './css/create-dream.css';
