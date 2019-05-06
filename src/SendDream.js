@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
+import {Elements, StripeProvider} from 'react-stripe-elements';
 import { getRandomDream, setSelectedDream } from './actions';
+import PaymentForm from './PaymentForm';
 
 const SendDream = (props) => {
   const {storeSelectedDream, selectedDream, elementsData} = props;
@@ -33,6 +35,13 @@ const SendDream = (props) => {
         <p>{selectedDreamElementDesc}</p>
         <p>For a donation of $5.00, we’ll reveal the details of the dream to the beneficiary, so they can benefit from this good omen.</p>
         <p>Dream ID: {selectedDream.id}</p>
+        <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
+          <div className="payment-form">
+            <Elements>
+              <PaymentForm />
+            </Elements>
+          </div>
+        </StripeProvider>
       </div>
     </div>
   )
