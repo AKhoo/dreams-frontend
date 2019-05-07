@@ -1,15 +1,22 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
+import {Elements, StripeProvider} from 'react-stripe-elements';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
-import {Elements, StripeProvider} from 'react-stripe-elements';
+import SendDreamForm from './SendDreamForm';
 import { getRandomDream, setSelectedDream } from './actions';
-import PaymentForm from './PaymentForm';
 
 const SendDream = (props) => {
   const {storeSelectedDream, selectedDream, elementsData} = props;
-  const selectedDreamElementName = selectedDream.relationships ? elementsData[selectedDream.relationships.elements.data[0].id].attributes.name : null;
-  const selectedDreamElementDesc = selectedDream.relationships ? elementsData[selectedDream.relationships.elements.data[0].id].attributes.commentary : null;
+
+  var selectedDreamId, selectedDreamElementName, selectedDreamElementDesc;
+  if (selectedDream.relationships) {
+    var selectedDreamId = selectedDream.relationships.elements.data[0].id;
+    if (elementsData[selectedDreamId]) {
+      var selectedDreamElementName = elementsData[selectedDreamId].attributes.name;
+      var selectedDreamElementDesc = elementsData[selectedDreamId].attributes.commentary;
+    }
+  }
 
   const getAndStoreRandomDream = () => {
     getRandomDream()
@@ -33,12 +40,12 @@ const SendDream = (props) => {
       <div>
         <p>Someone dreamed of a {selectedDreamElementName}!</p>
         <p>{selectedDreamElementDesc}</p>
-        <p>For a donation of $5.00, we’ll reveal the details of the dream to the beneficiary, so they can benefit from this good omen.</p>
+        <p>For a small charitable donation, we’ll reveal the details of the dream to the beneficiary, so they can benefit from this good omen.</p>
         <p>Dream ID: {selectedDream.id}</p>
         <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
           <div className="payment-form">
             <Elements>
-              <PaymentForm />
+              <SendDreamForm selectedDreamId={selectedDreamId}/>
             </Elements>
           </div>
         </StripeProvider>
