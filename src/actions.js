@@ -42,8 +42,8 @@ const makeNetworkRequest = (method, url, data) => {
   });
 };
 
-export const getRandomDream = () => {
-  return makeNetworkRequest('get', 'https://send-dreams.herokuapp.com/dreams/random');
+export const getDream = dreamId => {
+  return makeNetworkRequest('get', `https://send-dreams.herokuapp.com/dreams/${dreamId || 'random'}`);
 }
 
 export const setSelectedDream = (dreamData) => {

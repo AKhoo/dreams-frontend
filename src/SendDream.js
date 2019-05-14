@@ -4,9 +4,12 @@ import {Elements, StripeProvider} from 'react-stripe-elements';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import SendDreamForm from './SendDreamForm';
-import { getRandomDream, setSelectedDream } from './actions';
+import { getDream, setSelectedDream } from './actions';
 
 const SendDream = (props) => {
+  const urlParams = new URL(window.location).searchParams;
+  const dreamInUrl = urlParams.get('dream');
+
   const {storeSelectedDream, selectedDream, elementsData} = props;
 
   var selectedDreamId, selectedDreamElementName, selectedDreamElementDesc;
@@ -18,21 +21,23 @@ const SendDream = (props) => {
     }
   }
 
-  const getAndStoreRandomDream = () => {
-    getRandomDream()
+  const getAndStoreDream = (dreamId) => {
+    getDream(dreamId)
       .then(({data}) => {
         storeSelectedDream(data.data);
       });
   }
 
   useEffect(() => {
-    getAndStoreRandomDream();
+    getAndStoreDream(dreamInUrl);
   }, []);
 
   return (
     <div>
       <h1>Send a Dream</h1>
-      <Button variant="light" onClick={getAndStoreRandomDream}>Next Dream</Button>
+      <Button variant="light" onClick={() => getAndStoreDream()}>
+        Next Dream
+      </Button>
       <div>
         <Image src="https://img.icons8.com/ios-glyphs/30/000000/corgi.png" rounded />
         <p>{selectedDreamElementName}</p>
