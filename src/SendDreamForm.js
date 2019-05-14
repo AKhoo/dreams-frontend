@@ -4,6 +4,7 @@ import {CardElement, injectStripe} from 'react-stripe-elements';
 import Form from 'react-bootstrap/Form';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
+import { postPurchase } from './actions';
 
 const SendDreamForm = (props) => {
   const [fromEmail, setFromEmail] = useState('');
@@ -12,8 +13,20 @@ const SendDreamForm = (props) => {
   const [message, setMessage] = useState('');
   const { selectedDreamId } = props;
 
-  const handleSubmit = async () => {
-    let { token } = await this.props.stripe.createToken({name: "Name"});
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { token } = await props.stripe.createToken({name: "Name"});
+    const data = {
+      recipient_email: toEmail,
+      buyer_email: fromEmail,
+      dream_id: selectedDreamId,
+      amount_in_cents: 1, 
+      fee_in_cents: 1,
+      stripe_token: token.id
+    };
+    console.log(data);
+    const response = await postPurchase(data);  
+    if (response.ok) console.log("Purchase Complete!")
   }
 
   return (
@@ -57,7 +70,7 @@ const SendDreamForm = (props) => {
         <p>Payment:</p>
         <CardElement />
 
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" onClick={handleSubmit}>
           Send Good Fortune
         </Button>
       </Form>

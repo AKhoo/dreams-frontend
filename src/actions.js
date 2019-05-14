@@ -64,3 +64,11 @@ export const postDream = data => {
     data,
   );
 };
+
+export const postPurchase = data => {
+  return makeNetworkRequest(
+    'post',
+    'https://send-dreams.herokuapp.com/purchases',
+    data,
+  );
+};
