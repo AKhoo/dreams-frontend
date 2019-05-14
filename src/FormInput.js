@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
+import FormLabel from './FormLabel';
 
 const FormInput = props => {
   const {
@@ -14,7 +15,7 @@ const FormInput = props => {
   } = props;
   return (
     <Form.Group controlId={controlId}>
-      <Form.Label>{label}</Form.Label>
+      <FormLabel label={label} />
       <Form.Control
         type={type}
         required={isRequired}
