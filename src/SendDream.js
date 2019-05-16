@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import {Elements, StripeProvider} from 'react-stripe-elements';
-import Image from 'react-bootstrap/Image';
-import Button from 'react-bootstrap/Button';
+import { Image, Button } from 'react-bootstrap';
 import SendDreamForm from './SendDreamForm';
 import { getDream, setSelectedDream } from './actions';
 

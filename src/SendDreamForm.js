@@ -1,7 +1,6 @@
 import React, {Component, useState} from 'react';
-import Button from 'react-bootstrap/Button';
 import {CardElement, injectStripe} from 'react-stripe-elements';
-import Form from 'react-bootstrap/Form';
+import { Button, Form } from 'react-bootstrap';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
 import { postPurchase } from './actions';
@@ -64,7 +63,9 @@ const SendDreamForm = (props) => {
           handleChange={setMessage}/>
 
         <p>Payment:</p>
-        <CardElement />
+        <div id="card-element">
+          <CardElement />
+        </div>
 
         <Button type="submit" variant="primary" onClick={handleSubmit}>
           Send Good Fortune

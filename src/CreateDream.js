@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
-import Button from 'react-bootstrap/Button';
-import Image from 'react-bootstrap/Image';
-import Form from 'react-bootstrap/Form';
+import { Button, Image, Form } from 'react-bootstrap';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
 import ElementSelect from './ElementSelect';

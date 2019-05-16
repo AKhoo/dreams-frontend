@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Modal from 'react-bootstrap/Modal';
-import Spinner from 'react-bootstrap/Spinner';
+import { Modal, Spinner } from 'react-bootstrap';
 
 const SpinnerModal = props => {
   const { loadState } = props;
