@@ -7,13 +7,17 @@ import ElementSelect from './ElementSelect';
 import { postDream, addMessage } from './actions';
 
 const CreateDream = props => {
+  const { elementsData, addSuccessMessage } = props;
+
+  const elementsDataLength = Object.keys(elementsData).length;
+  const elementsDataFirstElement = elementsDataLength ? elementsData[Object.keys(elementsData)[0]] : null;
+  
   const [email, setEmail] = useState('');
   const [selectedElement, setSelectedElement] = useState({
-    name: elementsData ? elementsData[0].attributes.name : '',
-    id: elementsData ? elementsData[0].id : '',
+    name: elementsDataFirstElement ? elementsDataFirstElement.attributes.name : '',
+    id: elementsDataFirstElement ? elementsDataFirstElement.id : '',
   });
   const [description, setDescription] = useState('');
-  const { elementsData, addSuccessMessage } = props;
 
   return (
     <div>
@@ -53,6 +57,8 @@ const CreateDream = props => {
               description,
             }).then(() => {
               addSuccessMessage('Dream successfully submitted. Thank you!');
+              setEmail('');
+              setDescription('');
             });
           }}
         >
