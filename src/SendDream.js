@@ -3,14 +3,11 @@ import { connect } from 'react-redux'
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import { Image, Button } from 'react-bootstrap';
 import SendDreamForm from './SendDreamForm';
-import { getDream, setSelectedDream } from './actions';
+import { getAndStoreDream } from './actions';
 
 const SendDream = (props) => {
-  const urlParams = new URL(window.location).searchParams;
-  const dreamInUrl = urlParams.get('dream');
-
-  const {storeSelectedDream, selectedDream, elementsData} = props;
-
+  const { selectedDream, elementsData } = props;
+  
   var selectedDreamId, selectedDreamElementName, selectedDreamElementDesc;
   if (selectedDream.relationships) {
     var selectedDreamId = selectedDream.relationships.elements.data[0].id;
@@ -19,13 +16,9 @@ const SendDream = (props) => {
       var selectedDreamElementDesc = elementsData[selectedDreamId].attributes.commentary;
     }
   }
-
-  const getAndStoreDream = (dreamId) => {
-    getDream(dreamId)
-      .then(({data}) => {
-        storeSelectedDream(data.data);
-      });
-  }
+  
+  const urlParams = new URL(window.location).searchParams;
+  const dreamInUrl = urlParams.get('dream');
 
   useEffect(() => {
     getAndStoreDream(dreamInUrl);
@@ -65,10 +58,4 @@ const mapStateToProps = ({selectedDream, elementsData}) => {
   }
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    storeSelectedDream: dreamData => dispatch(setSelectedDream(dreamData)),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SendDream);
+export default connect(mapStateToProps)(SendDream);

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { store } from './App';
 
+// Action Creators
+
 export const setElementsData = elementsData => {
   return {
     type: 'SET_ELEMENTSDATA',
@@ -25,6 +27,15 @@ export const addMessage = (text, alertVariant) => {
   };
 };
 
+export const setSelectedDream = (dreamData) => {
+  return {
+    type: 'SET_SELECTEDDREAM',
+    payload: dreamData,
+  }
+}
+
+// Other Functions
+
 const makeNetworkRequest = (method, url, data) => {
   return new Promise((resolve, reject) => {
     store.dispatch(setLoadState(true));
@@ -46,13 +57,6 @@ export const getDream = dreamId => {
   return makeNetworkRequest('get', `https://send-dreams.herokuapp.com/dreams/${dreamId || 'random'}`);
 }
 
-export const setSelectedDream = (dreamData) => {
-  return {
-    type: 'SET_SELECTEDDREAM',
-    payload: dreamData,
-  }
-}
-
 export const getElements = () => {
   return makeNetworkRequest('get', 'https://send-dreams.herokuapp.com/elements');
 }
@@ -72,3 +76,10 @@ export const postPurchase = data => {
     data,
   );
 };
+
+export const getAndStoreDream = (dreamId) => {
+  getDream(dreamId)
+    .then(({data}) => {
+      store.dispatch(setSelectedDream(data.data));
+    });
+}
