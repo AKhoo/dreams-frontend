@@ -4,14 +4,18 @@ import Message from './Message';
 
 const Messages = props => {
   const { messages } = props;
-  return messages.map((message, index) => (
-    <Message
-      key={'message' + index}
-      text={message.text}
-      variant={message.alertVariant}
-      index={index}
-    />
-  ));
+  return (
+    <React.Fragment>
+      {messages.map((message, index) => (
+        <Message
+          key={index}
+          text={message.text}
+          variant={message.alertVariant}
+          index={index}
+        />
+      ))}
+    </React.Fragment>
+  );
 };
 
 const mapStateToProps = ({ messages }) => {
