@@ -27,12 +27,12 @@ export const addMessage = (text, alertVariant) => {
   };
 };
 
-export const setSelectedDream = (dreamData) => {
+export const setSelectedDream = dreamData => {
   return {
     type: 'SET_SELECTEDDREAM',
     payload: dreamData,
-  }
-}
+  };
+};
 
 // Other Functions
 
@@ -54,12 +54,18 @@ const makeNetworkRequest = (method, url, data) => {
 };
 
 export const getDream = dreamId => {
-  return makeNetworkRequest('get', `https://send-dreams.herokuapp.com/dreams/${dreamId || 'random'}`);
-}
+  return makeNetworkRequest(
+    'get',
+    `https://send-dreams.herokuapp.com/dreams/${dreamId || 'random'}`,
+  );
+};
 
 export const getElements = () => {
-  return makeNetworkRequest('get', 'https://send-dreams.herokuapp.com/elements');
-}
+  return makeNetworkRequest(
+    'get',
+    'https://send-dreams.herokuapp.com/elements',
+  );
+};
 
 export const postDream = data => {
   return makeNetworkRequest(
@@ -77,20 +83,18 @@ export const postPurchase = data => {
   );
 };
 
-export const getAndStoreDream = (dreamId) => {
-  getDream(dreamId)
-    .then(({data}) => {
-      store.dispatch(setSelectedDream(data.data));
-    });
+export const getAndStoreDream = dreamId => {
+  getDream(dreamId).then(({ data }) => {
+    store.dispatch(setSelectedDream(data.data));
+  });
 };
 
 export const getAndStoreElements = () => {
-  getElements()
-    .then(({ data }) => {
-      const elementDataObj = {};
-      data.data.forEach(element => {
-        elementDataObj[element.id] = element;
-      });
-      store.dispatch(setElementsData(elementDataObj));
+  getElements().then(({ data }) => {
+    const elementDataObj = {};
+    data.data.forEach(element => {
+      elementDataObj[element.id] = element;
     });
+    store.dispatch(setElementsData(elementDataObj));
+  });
 };

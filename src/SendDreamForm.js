@@ -1,66 +1,69 @@
-import React, {Component, useState} from 'react';
-import {CardElement, injectStripe} from 'react-stripe-elements';
+import React, { useState } from 'react';
+import { CardElement, injectStripe } from 'react-stripe-elements';
 import { Button, Form } from 'react-bootstrap';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
 import { postPurchase } from './actions';
 
-const SendDreamForm = (props) => {
+const SendDreamForm = props => {
   const [fromEmail, setFromEmail] = useState('');
   const [toName, setToName] = useState('');
   const [toEmail, setToEmail] = useState('');
   const [message, setMessage] = useState('');
   const { selectedDreamId } = props;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    const { token } = await props.stripe.createToken({name: "Name"});
+    const { token } = await props.stripe.createToken({ name: 'Name' });
     const data = {
       recipient_email: toEmail,
       buyer_email: fromEmail,
       dream_id: selectedDreamId,
-      amount_in_cents: 50, 
+      amount_in_cents: 50,
       fee_in_cents: 50,
-      stripe_token: token.id
+      stripe_token: token.id,
     };
-    console.log(data);
-    const response = await postPurchase(data);  
-    if (response.ok) console.log("Purchase Complete!")
-  }
+    const _response = await postPurchase(data);
+    // if (response.ok) console.log("Purchase Complete!")
+  };
 
   return (
     <div className="checkout">
       <Form>
-        <FormInput 
-          type="email" 
+        <FormInput
+          type="email"
           isRequired={true}
           controlId="SendDreamFromEmail"
           placeholder="Your email address"
-          value={fromEmail} 
-          handleChange={setFromEmail}/>
+          value={fromEmail}
+          handleChange={setFromEmail}
+        />
 
-        <FormInput 
-          type="text" 
+        <FormInput
+          type="text"
           isRequired={true}
           controlId="SendDreamToName"
           placeholder="Beneficiary name"
-          value={toName} 
-          handleChange={setToName}/>
+          value={toName}
+          handleChange={setToName}
+        />
 
-        <FormInput 
-          type="email" 
+        <FormInput
+          type="email"
           isRequired={true}
           controlId="SendDreamToEmail"
           placeholder="Beneficiary email"
-          value={toEmail} 
-          handleChange={setToEmail}/>
+          value={toEmail}
+          handleChange={setToEmail}
+        />
 
-        <FormTextarea 
-          rows={3} 
-          controlId="SendDreamMessage" 
+        <FormTextarea
+          rows={3}
+          controlId="SendDreamMessage"
           placeholder="Enter a message (optional)"
-          value={message} 
-          handleChange={setMessage}/>
+          value={message}
+          handleChange={setMessage}
+        />
 
         <p>Payment:</p>
         <div id="card-element">
@@ -73,6 +76,6 @@ const SendDreamForm = (props) => {
       </Form>
     </div>
   );
-}
+};
 
 export default injectStripe(SendDreamForm);

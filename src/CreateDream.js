@@ -13,7 +13,7 @@ const CreateDream = props => {
     id: elementsData ? elementsData[0].id : '',
   });
   const [description, setDescription] = useState('');
-  const {elementsData, addSuccessMessage} = props;
+  const { elementsData, addSuccessMessage } = props;
 
   return (
     <div>
@@ -96,8 +96,8 @@ const mapStateToProps = ({ elementsData }) => {
 const mapDispatchToProps = dispatch => {
   return {
     addSuccessMessage: text => dispatch(addMessage(text, 'success')),
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,
