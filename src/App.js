@@ -8,7 +8,7 @@ import CreateDream from './CreateDream';
 import SpinnerModal from './SpinnerModal';
 import Messages from './Messages';
 import rootReducer from './reducer';
-import { setElementsData, getElements } from './actions';
+import { getAndStoreElements } from './actions';
 import './css/app.css';
 import './css/landing.css';
 import './css/create-dream.css';
@@ -21,14 +21,7 @@ export const store = createStore(
 export class App extends Component {
 
   componentDidMount() {
-    getElements()
-      .then(({ data }) => {
-        const elementDataObj = {};
-        data.data.forEach(element => {
-          elementDataObj[element.id] = element;
-        });
-        store.dispatch(setElementsData(elementDataObj));
-      });
+    getAndStoreElements();
   }
 
   render() {

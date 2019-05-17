@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { Button, Image, Form } from 'react-bootstrap';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';

@@ -82,4 +82,15 @@ export const getAndStoreDream = (dreamId) => {
     .then(({data}) => {
       store.dispatch(setSelectedDream(data.data));
     });
-}
+};
+
+export const getAndStoreElements = () => {
+  getElements()
+    .then(({ data }) => {
+      const elementDataObj = {};
+      data.data.forEach(element => {
+        elementDataObj[element.id] = element;
+      });
+      store.dispatch(setElementsData(elementDataObj));
+    });
+};
