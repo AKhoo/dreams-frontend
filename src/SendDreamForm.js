@@ -19,8 +19,8 @@ const SendDreamForm = (props) => {
       recipient_email: toEmail,
       buyer_email: fromEmail,
       dream_id: selectedDreamId,
-      amount_in_cents: 1, 
-      fee_in_cents: 1,
+      amount_in_cents: 50, 
+      fee_in_cents: 50,
       stripe_token: token.id
     };
     console.log(data);

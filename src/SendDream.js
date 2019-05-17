@@ -8,12 +8,13 @@ import { getAndStoreDream } from './actions';
 const SendDream = (props) => {
   const { selectedDream, elementsData } = props;
   
-  var selectedDreamId, selectedDreamElementName, selectedDreamElementDesc;
+  let selectedDreamId, selectedDreamElementName, selectedDreamElementDesc;
   if (selectedDream.relationships) {
-    var selectedDreamId = selectedDream.relationships.elements.data[0].id;
-    if (elementsData[selectedDreamId]) {
-      var selectedDreamElementName = elementsData[selectedDreamId].attributes.name;
-      var selectedDreamElementDesc = elementsData[selectedDreamId].attributes.commentary;
+    selectedDreamId = selectedDream.id;
+    const selectedDreamElementId = selectedDream.relationships.elements.data[0].id;
+    if (elementsData[selectedDreamElementId]) {
+      selectedDreamElementName = elementsData[selectedDreamElementId].attributes.name;
+      selectedDreamElementDesc = elementsData[selectedDreamElementId].attributes.commentary;
     }
   }
   
@@ -39,7 +40,7 @@ const SendDream = (props) => {
         <p>{selectedDreamElementDesc}</p>
         <p>For a small charitable donation, we’ll reveal the details of the dream to the beneficiary, so they can benefit from this good omen.</p>
         <p>Dream ID: {selectedDream.id}</p>
-        <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
+        <StripeProvider apiKey="pk_test_oeaRCbtNezkjFcikM3dEFl2w000KmVZVk1">
           <div className="payment-form">
             <Elements>
               <SendDreamForm selectedDreamId={selectedDreamId}/>
