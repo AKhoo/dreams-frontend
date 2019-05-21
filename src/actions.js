@@ -1,25 +1,26 @@
 import axios from 'axios';
 import { store } from './App';
+import { types } from './types';
 
 // Action Creators
 
 export const setElementsData = elementsData => {
   return {
-    type: 'SET_ELEMENTSDATA',
+    type: types.SET_ELEMENTSDATA,
     payload: elementsData,
   };
 };
 
 const setLoadState = isLoading => {
   return {
-    type: 'SET_LOADSTATE',
+    type: types.SET_LOADSTATE,
     payload: isLoading,
   };
 };
 
 export const addMessage = (text, alertVariant) => {
   return {
-    type: 'ADD_MESSAGE',
+    type: types.ADD_MESSAGE,
     payload: {
       text,
       alertVariant,
@@ -29,7 +30,7 @@ export const addMessage = (text, alertVariant) => {
 
 export const setSelectedDream = dreamData => {
   return {
-    type: 'SET_SELECTEDDREAM',
+    type: types.SET_SELECTEDDREAM,
     payload: dreamData,
   };
 };

@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import { types } from './types';
 
 const elementsData = (state = {}, action) => {
-  if (action.type === 'SET_ELEMENTSDATA') {
+  if (action.type === types.SET_ELEMENTSDATA) {
     return action.payload;
   } else {
     return state;
@@ -9,7 +10,7 @@ const elementsData = (state = {}, action) => {
 };
 
 const loadState = (state = false, action) => {
-  if (action.type === 'SET_LOADSTATE') {
+  if (action.type === types.SET_LOADSTATE) {
     return action.payload;
   } else {
     return state;
@@ -17,7 +18,7 @@ const loadState = (state = false, action) => {
 };
 
 const messages = (state = [], action) => {
-  if (action.type === 'ADD_MESSAGE') {
+  if (action.type === types.ADD_MESSAGE) {
     if (action.payload.alertVariant === 'success') {
       return [action.payload];
     } else {
@@ -29,7 +30,7 @@ const messages = (state = [], action) => {
 };
 
 const selectedDream = (state = {}, action) => {
-  if (action.type === 'SET_SELECTEDDREAM') {
+  if (action.type === types.SET_SELECTEDDREAM) {
     return action.payload;
   } else {
     return state;
