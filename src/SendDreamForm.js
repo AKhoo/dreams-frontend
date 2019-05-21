@@ -12,7 +12,7 @@ const SendDreamForm = props => {
   const [message, setMessage] = useState('');
   const { selectedDreamId } = props;
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { token } = await props.stripe.createToken({ name: 'Name' });
     const data = {
@@ -23,8 +23,14 @@ const SendDreamForm = props => {
       fee_in_cents: 50,
       stripe_token: token.id,
     };
-    const _response = await postPurchase(data);
-    // if (response.ok) console.log("Purchase Complete!")
+    const response = await postPurchase(data);
+    if (response.status === 200) {
+      setFromEmail('');
+      setToEmail('');
+      setToName('');
+      setMessage('');
+      window.cardElement.clear();
+    };
   };
 
   return (
@@ -67,7 +73,9 @@ const SendDreamForm = props => {
 
         <p>Payment:</p>
         <div id="card-element">
-          <CardElement />
+          {/* How do I clear this element on postPurchase success? */}
+          {/* In parent component, create a var and a func that sets the var. Pass the func to CardElement */}
+          <CardElement onReady={currentElement => {window.cardElement = currentElement}} />
         </div>
 
         <Button type="submit" variant="primary" onClick={handleSubmit}>
