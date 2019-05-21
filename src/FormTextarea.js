@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import FormLabel from './FormLabel';
 
 export default props => {
   const {
@@ -16,7 +15,7 @@ export default props => {
   return (
     <React.Fragment>
       <Form.Group controlId={controlId}>
-        <FormLabel label={label} />
+        {label && <Form.Label>{label}</Form.Label>}
         <Form.Control
           as="textarea"
           rows={rows}
