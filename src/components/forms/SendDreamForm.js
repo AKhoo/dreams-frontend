@@ -3,7 +3,7 @@ import { CardElement, injectStripe } from 'react-stripe-elements';
 import { Button, Form } from 'react-bootstrap';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
-import { postPurchase } from './actions';
+import { postPurchase } from '../../actions';
 
 const SendDreamForm = props => {
   const [fromEmail, setFromEmail] = useState('');

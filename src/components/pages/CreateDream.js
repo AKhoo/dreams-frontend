@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Button, Image, Form } from 'react-bootstrap';
-import FormInput from './FormInput';
-import FormTextarea from './FormTextarea';
-import ElementSelect from './ElementSelect';
-import { postDream, addMessage } from './actions';
+import FormInput from '../forms/FormInput';
+import FormTextarea from '../forms/FormTextarea';
+import ElementSelect from '../forms/ElementSelect';
+import { postDream, addMessage } from '../../actions';
 
 const CreateDream = props => {
   const { elementsData, addSuccessMessage } = props;

@@ -5,13 +5,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Landing from './Landing';
 import SendDream from './SendDream';
 import CreateDream from './CreateDream';
-import SpinnerModal from './SpinnerModal';
-import Messages from './Messages';
-import rootReducer from './reducer';
-import { getAndStoreElements } from './actions';
-import './css/app.css';
-import './css/landing.css';
-import './css/create-dream.css';
+import SpinnerModal from '../other/SpinnerModal';
+import Messages from '../other/Messages';
+import rootReducer from '../../reducer';
+import { getAndStoreElements } from '../../actions';
+import '../../css/app.css';
+import '../../css/landing.css';
+import '../../css/create-dream.css';
 
 export const store = createStore(
   rootReducer,

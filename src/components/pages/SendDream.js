@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import { Image, Button } from 'react-bootstrap';
-import SendDreamForm from './SendDreamForm';
-import { getAndStoreDream } from './actions';
+import SendDreamForm from '../forms/SendDreamForm';
+import { getAndStoreDream } from '../../actions';
 
 const SendDream = props => {
   const { selectedDream, elementsData } = props;

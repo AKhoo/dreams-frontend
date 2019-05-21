@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { store } from './App';
+import { store } from './components/pages/App';
 import { types } from './types';
 
 // Action Creators
