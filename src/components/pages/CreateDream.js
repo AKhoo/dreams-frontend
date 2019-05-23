@@ -10,11 +10,15 @@ const CreateDream = props => {
   const { elementsData, addSuccessMessage } = props;
 
   const elementsDataLength = Object.keys(elementsData).length;
-  const elementsDataFirstElement = elementsDataLength ? elementsData[Object.keys(elementsData)[0]] : null;
-  
+  const elementsDataFirstElement = elementsDataLength
+    ? elementsData[Object.keys(elementsData)[0]]
+    : null;
+
   const [email, setEmail] = useState('');
   const [selectedElement, setSelectedElement] = useState({
-    name: elementsDataFirstElement ? elementsDataFirstElement.attributes.name : '',
+    name: elementsDataFirstElement
+      ? elementsDataFirstElement.attributes.name
+      : '',
     id: elementsDataFirstElement ? elementsDataFirstElement.id : '',
   });
   const [description, setDescription] = useState('');
