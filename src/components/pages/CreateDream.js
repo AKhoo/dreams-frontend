@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Button, Image, Form } from 'react-bootstrap';
 import FormInput from '../forms/FormInput';
 import FormTextarea from '../forms/FormTextarea';
 import ElementSelect from '../forms/ElementSelect';
-import { postDream, addMessage } from '../../actions';
+
+import { getAndStoreElements, postDream, addMessage } from '../../actions';
 
 const CreateDream = props => {
   const { elementsData, addSuccessMessage } = props;
@@ -22,6 +23,10 @@ const CreateDream = props => {
     id: elementsDataFirstElement ? elementsDataFirstElement.id : '',
   });
   const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    getAndStoreElements();
+  }, []);
 
   return (
     <div>

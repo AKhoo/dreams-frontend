@@ -13,7 +13,6 @@ import Messages from '../other/Messages';
 import Header from '../other/Header';
 
 import rootReducer from '../../reducer';
-import { getAndStoreElements } from '../../actions';
 
 import '../../css/app.css';
 import '../../css/landing.css';
@@ -26,9 +25,6 @@ export const store = createStore(
 );
 
 export class App extends Component {
-  componentDidMount() {
-    getAndStoreElements();
-  }
 
   render() {
     return (
