@@ -1,0 +1,13 @@
+.header {
+  background-color: white !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.header .nav-link-container {
+  font-weight: bold;
+}
+
+.header .nav-link-container a {
+  color: black !important;
+}

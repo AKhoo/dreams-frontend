@@ -12,7 +12,7 @@ const SendDreamForm = props => {
   const [message, setMessage] = useState('');
   const { selectedDreamId } = props;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const { token } = await props.stripe.createToken({ name: 'Name' });
     const data = {
@@ -30,7 +30,7 @@ const SendDreamForm = props => {
       setToName('');
       setMessage('');
       window.cardElement.clear();
-    };
+    }
   };
 
   return (
@@ -75,7 +75,11 @@ const SendDreamForm = props => {
         <div id="card-element">
           {/* How do I clear this element on postPurchase success? */}
           {/* In parent component, create a var and a func that sets the var. Pass the func to CardElement */}
-          <CardElement onReady={currentElement => {window.cardElement = currentElement}} />
+          <CardElement
+            onReady={currentElement => {
+              window.cardElement = currentElement;
+            }}
+          />
         </div>
 
         <Button type="submit" variant="primary" onClick={handleSubmit}>

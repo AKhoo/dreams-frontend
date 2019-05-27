@@ -1,12 +1,12 @@
-import React from 'react';
-import { Button, Col, Container, Image, Row } from 'react-bootstrap';
+import React, { Fragment } from 'react';
+import { Button, Col, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import Logo from '../other/Logo';
+import LogoText from '../other/LogoText';
 
 const Landing = _props => {
   return (
-    <Container>
+    <Fragment>
       <Row className="mt-5">
         <Col xs={12} md={8}>
           <Row>
@@ -20,7 +20,7 @@ const Landing = _props => {
           <Row className="mt-3">
             <Col xs={12}>
               <h3>
-                <Logo /> is an online experiment where anyone can buy good
+                <LogoText /> is an online experiment where anyone can buy good
                 dreams and the good luck that comes with it.
               </h3>
             </Col>
@@ -66,7 +66,7 @@ const Landing = _props => {
           </Link>
         </Col>
       </Row>
-    </Container>
+    </Fragment>
   );
 };
 
