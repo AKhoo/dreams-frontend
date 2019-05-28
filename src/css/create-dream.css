@@ -1,4 +1,21 @@
+.bodyContentBox {
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+
 .createDreamDetails {
   border: 1px solid lightgray;
   padding: 10px;
+}
+
+.circle {
+  border: 2px solid #674EA7;
+  border-radius: 50%;
+  height: 6em;
+  width: 6em;
+  text-align: center;
+}
+
+.elementName {
+  font-weight: bold;
 }
