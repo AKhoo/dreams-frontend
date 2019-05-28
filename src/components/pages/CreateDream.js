@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Image, Form } from 'react-bootstrap';
 
 import SpinnerModal from '../other/SpinnerModal';
+import CreateDreamModal from '../other/CreateDreamModal';
 import GuideElement from '../other/GuideElement';
 import FormInput from '../forms/FormInput';
 import FormTextarea from '../forms/FormTextarea';
@@ -29,12 +30,12 @@ const CreateDream = props => {
     };
   }, []);
 
-  if (elementsData.data & !selectedElement.id) {
-    setSelectedElement({
-      name: elementsDataFirstElement.attributes.name,
-      id: elementsDataFirstElement.id,
-    });
-  }
+  // if (elementsData.data & !selectedElement.id) {
+  //   setSelectedElement({
+  //     name: elementsDataFirstElement.attributes.name,
+  //     id: elementsDataFirstElement.id,
+  //   });
+  // }
   
   return (
     <div>
@@ -50,9 +51,11 @@ const CreateDream = props => {
         <p>If your dream includes one of the symbols below, congratulations!</p>
         <p>You can keep your dream a secret to retain the good fortune, or you can donate it for others to benefit by telling us the details of your dream.</p>
         {elementsArray 
-          ? elementsArray.map(element => <GuideElement element={element} withButton={true} key={element.id}/>) 
+          ? elementsArray.map(element => <GuideElement element={element} withButton={true} handleClick={setSelectedElement} key={element.id}/>) 
           : null}
       </div>
+
+      <CreateDreamModal selectedElement={selectedElement}/>
 
       <ElementSelect
         controlId="CreateDreamElement"
