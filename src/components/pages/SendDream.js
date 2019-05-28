@@ -2,8 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import { Image, Button } from 'react-bootstrap';
+
+import SpinnerModal from '../other/SpinnerModal';
 import SendDreamForm from '../forms/SendDreamForm';
-import { getAndStoreDream } from '../../actions';
+
+import { getAndStoreElements, getAndStoreDream } from '../../actions';
 
 const SendDream = props => {
   const { selectedDream, elementsData } = props;
@@ -26,10 +29,15 @@ const SendDream = props => {
 
   useEffect(() => {
     getAndStoreDream(dreamInUrl);
+    if (!elementsData.data) {
+      getAndStoreElements();
+    };
   }, []);
 
   return (
     <div>
+      <SpinnerModal loadState={elementsData.loadState || selectedDream.loadState}/>
+
       <h1>Send a Dream</h1>
       <Button variant="light" onClick={() => getAndStoreDream()}>
         Next Dream
