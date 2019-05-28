@@ -37,7 +37,10 @@ const CreateDream = props => {
     <div>
       <SpinnerModal loadState={elementsData.loadState}/>
 
-      <h1>What Does Your Dream Say?</h1>
+      <h1>Capture Your Dream</h1>
+      <p>What does your dream say? It could be a prediction about the future.</p>
+      <p>In Korean dream interpretation, there are good dreams (길몽), bad dreams (흉몽), and nightmares (악몽). There are also “conception dreams” (태몽), which are dreams a woman (or another woman very close to her) has when she gets pregnant.</p>
+      <p>For an omen to apply, it must be a major element of your dream. Your dream also needs to have a coherent thread. If your dream is very scattered and without sequence, then it is known as a “dog dream” (개꿈), which is a dream without special meaning.</p>
 
       <ElementSelect
         controlId="CreateDreamElement"
