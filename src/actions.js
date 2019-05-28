@@ -11,9 +11,24 @@ export const setElementsData = elementsData => {
   };
 };
 
-const setLoadState = isLoading => {
+const setElementsDataLoadState = isLoading => {
   return {
-    type: types.SET_LOADSTATE,
+    type: types.SET_ELEMENTSDATA_LOADSTATE,
+    payload: isLoading,
+  };
+};
+
+export const setSelectedDream = dreamData => {
+  return {
+    type: types.SET_SELECTEDDREAM,
+    payload: dreamData,
+  };
+};
+
+
+const setSelectedDreamLoadState = isLoading => {
+  return {
+    type: types.SET_SELECTEDDREAM_LOADSTATE,
     payload: isLoading,
   };
 };
@@ -28,25 +43,18 @@ export const addMessage = (text, alertVariant) => {
   };
 };
 
-export const setSelectedDream = dreamData => {
-  return {
-    type: types.SET_SELECTEDDREAM,
-    payload: dreamData,
-  };
-};
-
 // Other Functions
 
-const makeNetworkRequest = (method, url, data) => {
+const makeNetworkRequest = (method, url, data, loadStateAction) => {
   return new Promise((resolve, reject) => {
-    store.dispatch(setLoadState(true));
+    store.dispatch(loadStateAction(true));
     axios[method](url, data)
       .then(data => {
-        store.dispatch(setLoadState(false));
+        store.dispatch(loadStateAction(false));
         resolve(data);
       })
       .catch(err => {
-        store.dispatch(setLoadState(false));
+        store.dispatch(loadStateAction(false));
         const message = err.response ? err.response.data.error : err.message;
         store.dispatch(addMessage(message, 'danger'));
         reject(err);
@@ -58,6 +66,8 @@ export const getDream = dreamId => {
   return makeNetworkRequest(
     'get',
     `https://send-dreams.herokuapp.com/dreams/${dreamId || 'random'}`,
+    null,
+    setSelectedDreamLoadState
   );
 };
 
@@ -65,6 +75,8 @@ export const getElements = () => {
   return makeNetworkRequest(
     'get',
     'https://send-dreams.herokuapp.com/elements',
+    null,
+    setElementsDataLoadState
   );
 };
 

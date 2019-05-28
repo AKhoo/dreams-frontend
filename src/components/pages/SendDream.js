@@ -9,15 +9,15 @@ const SendDream = props => {
   const { selectedDream, elementsData } = props;
 
   let selectedDreamId, selectedDreamElementName, selectedDreamElementDesc;
-  if (selectedDream.relationships) {
-    selectedDreamId = selectedDream.id;
+  if (selectedDream.data) {
+    selectedDreamId = selectedDream.data.id;
     const selectedDreamElementId =
-      selectedDream.relationships.elements.data[0].id;
-    if (elementsData[selectedDreamElementId]) {
+      selectedDream.data.relationships.elements.data[0].id;
+    if (elementsData.data) {
       selectedDreamElementName =
-        elementsData[selectedDreamElementId].attributes.name;
+        elementsData.data[selectedDreamElementId].attributes.name;
       selectedDreamElementDesc =
-        elementsData[selectedDreamElementId].attributes.commentary;
+        elementsData.data[selectedDreamElementId].attributes.commentary;
     }
   }
 
@@ -48,7 +48,7 @@ const SendDream = props => {
           For a small charitable donation, we’ll reveal the details of the dream
           to the beneficiary, so they can benefit from this good omen.
         </p>
-        <p>Dream ID: {selectedDream.id}</p>
+        <p>Dream ID: {selectedDreamId}</p>
         <StripeProvider apiKey="pk_test_oeaRCbtNezkjFcikM3dEFl2w000KmVZVk1">
           <div className="payment-form">
             <Elements>

@@ -10,24 +10,25 @@ import { getAndStoreElements, postDream, addMessage } from '../../actions';
 const CreateDream = props => {
   const { elementsData, addSuccessMessage } = props;
 
-  const elementsDataLength = Object.keys(elementsData).length;
-  const elementsDataFirstElement = elementsDataLength
-    ? elementsData[Object.keys(elementsData)[0]]
+  const elementsDataFirstElement = elementsData.data
+    ? elementsData.data[Object.keys(elementsData.data)[0]]
     : null;
 
   const [email, setEmail] = useState('');
-  const [selectedElement, setSelectedElement] = useState({
-    name: elementsDataFirstElement
-      ? elementsDataFirstElement.attributes.name
-      : '',
-    id: elementsDataFirstElement ? elementsDataFirstElement.id : '',
-  });
+  const [selectedElement, setSelectedElement] = useState({name: null,id: null});
   const [description, setDescription] = useState('');
-
+  
   useEffect(() => {
     getAndStoreElements();
   }, []);
 
+  if (elementsData.data & !selectedElement.id) {
+    setSelectedElement({
+      name: elementsDataFirstElement.attributes.name,
+      id: elementsDataFirstElement.id,
+    });
+  }
+  
   return (
     <div>
       <h1>What Does Your Dream Say?</h1>
@@ -35,7 +36,7 @@ const CreateDream = props => {
       <ElementSelect
         controlId="CreateDreamElement"
         label="What was the most prominent symbol in your dream?"
-        options={elementsData}
+        options={elementsData.data ? elementsData.data : {}}
         selectedElement={selectedElement}
         handleChange={setSelectedElement}
       />
@@ -47,8 +48,8 @@ const CreateDream = props => {
         />
         <h2>{selectedElement.name}</h2>
         <p>
-          {elementsData[selectedElement.id]
-            ? elementsData[selectedElement.id].attributes.commentary
+          {selectedElement.id
+            ? elementsData.data[selectedElement.id].attributes.commentary
             : ''}
         </p>
 
