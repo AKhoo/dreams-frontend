@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Button, Image, Form } from 'react-bootstrap';
+
+import SpinnerModal from '../other/SpinnerModal';
 import FormInput from '../forms/FormInput';
 import FormTextarea from '../forms/FormTextarea';
 import ElementSelect from '../forms/ElementSelect';
@@ -19,7 +21,9 @@ const CreateDream = props => {
   const [description, setDescription] = useState('');
   
   useEffect(() => {
-    getAndStoreElements();
+    if (!elementsData.data) {
+      getAndStoreElements();
+    };
   }, []);
 
   if (elementsData.data & !selectedElement.id) {
@@ -31,6 +35,8 @@ const CreateDream = props => {
   
   return (
     <div>
+      <SpinnerModal loadState={elementsData.loadState}/>
+
       <h1>What Does Your Dream Say?</h1>
 
       <ElementSelect

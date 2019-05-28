@@ -8,7 +8,6 @@ import Landing from './Landing';
 import SendDream from './SendDream';
 import CreateDream from './CreateDream';
 
-import SpinnerModal from '../other/SpinnerModal';
 import Messages from '../other/Messages';
 import Header from '../other/Header';
 
@@ -38,7 +37,6 @@ export class App extends Component {
             <Route path="/send" exact component={SendDream} />
             <Route path="/donate" exact component={CreateDream} />
           </Router>
-          <SpinnerModal />
         </Container>
       </Provider>
     );

@@ -16,10 +16,4 @@ const SpinnerModal = props => {
   );
 };
 
-const mapStateToProps = ({ loadState }) => {
-  return {
-    loadState,
-  };
-};
-
-export default connect(mapStateToProps)(SpinnerModal);
+export default SpinnerModal;
