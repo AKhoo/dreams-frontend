@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Button, Image, Form } from 'react-bootstrap';
 
 import SpinnerModal from '../other/SpinnerModal';
 import CreateDreamModal from '../other/CreateDreamModal';
@@ -14,6 +13,7 @@ const CreateDream = props => {
   const elementsArray = elementsData.data ? Object.values(elementsData.data) : null;
 
   const [selectedElement, setSelectedElement] = useState({name: null,id: null});
+  const [showModal, setShowModal] = useState(true);
   
   useEffect(() => {
     if (!elementsData.data) {
@@ -35,11 +35,21 @@ const CreateDream = props => {
         <p>If your dream includes one of the symbols below, congratulations!</p>
         <p>You can keep your dream a secret to retain the good fortune, or you can donate it for others to benefit by telling us the details of your dream.</p>
         {elementsArray 
-          ? elementsArray.map(element => <GuideElement element={element} withButton={true} handleClick={setSelectedElement} key={element.id}/>) 
+          ? elementsArray.map(element => <GuideElement 
+            element={element} 
+            withButton={true} 
+            handleClick={setSelectedElement} 
+            setShowModal={setShowModal}
+            key={element.id}/>) 
           : null}
       </div>
 
-      {selectedElement.id && <CreateDreamModal selectedElement={selectedElement} addSuccessMessage={addSuccessMessage}/>}
+      {selectedElement.id && <CreateDreamModal 
+        selectedElement={selectedElement} 
+        addSuccessMessage={addSuccessMessage}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        />}
     </div>
   );
 };

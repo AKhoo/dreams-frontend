@@ -7,14 +7,14 @@ import FormTextarea from '../forms/FormTextarea';
 import { postDream } from '../../actions';
 
 const CreateDreamModal = props => {
-  const { selectedElement, addSuccessMessage } = props;
+  const { selectedElement, addSuccessMessage, showModal, setShowModal } = props;
 
   const [email, setEmail] = useState('');
   const [description, setDescription] = useState('');  
 
   return (
     <Modal
-      show
+      show={showModal}
       centered
       dialogClassName="CreateDreamModal"
     >
@@ -34,6 +34,7 @@ const CreateDreamModal = props => {
             addSuccessMessage('Dream successfully submitted. Thank you!');
             setEmail('');
             setDescription('');
+            setShowModal(false);
           });
         }}
       >
@@ -66,7 +67,7 @@ const CreateDreamModal = props => {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="primary">Close</Button>
+            <Button variant="primary" onClick={() => setShowModal(false)}>Close</Button>
             <Button type="submit" variant="success">
               Donate My Dream
             </Button>

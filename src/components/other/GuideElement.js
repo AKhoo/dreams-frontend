@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 
 const GuideElement = (props) => {
-  const { element, withButton, handleClick } = props;
+  const { element, withButton, handleClick, setShowModal } = props;
   return (
     <Container>
       <Row>
@@ -15,8 +15,10 @@ const GuideElement = (props) => {
           <p className="elementName">{element.attributes.name}</p>
           <p>{element.attributes.commentary}</p>
           {withButton 
-            && <Button type="submit" variant="success" onClick={() => 
-              handleClick({name: element.attributes.name, id: element.id})}> 
+            && <Button type="submit" variant="success" onClick={() => {
+              handleClick({name: element.attributes.name, id: element.id});
+              setShowModal(true);
+              }}> 
                 Submit Dream
               </Button>
           }
