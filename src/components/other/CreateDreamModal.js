@@ -23,25 +23,25 @@ const CreateDreamModal = props => {
           <Modal.Title>Finish Journaling</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
-          <p>You dreamed of a {selectedElement.name}? Tell us more!</p>
-          <p>“Donate” a good omen by sending us the details of your dream. If it’s usable, we’ll let others “buy” the omen in exchange for a small donation to a non-profit organization. </p>
-          <p>We keep your dream secret, and only reveal the details when the buyer has made a donation to charity. By donating a dream, you help others with their dreams!</p>
+        <Form
+        onSubmit={e => {
+          e.preventDefault();
+          postDream({
+            email,
+            element_ids: selectedElement.id,
+            description,
+          }).then(() => {
+            addSuccessMessage('Dream successfully submitted. Thank you!');
+            setEmail('');
+            setDescription('');
+          });
+        }}
+      >
+          <Modal.Body>
+            <p>You dreamed of a {selectedElement.name}? Tell us more!</p>
+            <p>“Donate” a good omen by sending us the details of your dream. If it’s usable, we’ll let others “buy” the omen in exchange for a small donation to a non-profit organization. </p>
+            <p>We keep your dream secret, and only reveal the details when the buyer has made a donation to charity. By donating a dream, you help others with their dreams!</p>
 
-            <Form
-            onSubmit={e => {
-              e.preventDefault();
-              postDream({
-                email,
-                element_ids: selectedElement.id,
-                description,
-              }).then(() => {
-                addSuccessMessage('Dream successfully submitted. Thank you!');
-                setEmail('');
-                setDescription('');
-              });
-            }}
-          >
             <FormInput
               type="email"
               isRequired={true}
@@ -63,18 +63,15 @@ const CreateDreamModal = props => {
               value={description}
               handleChange={setDescription}
             />
+          </Modal.Body>
 
-            <Button type="submit" variant="primary">
+          <Modal.Footer>
+            <Button variant="primary">Close</Button>
+            <Button type="submit" variant="success">
               Donate My Dream
             </Button>
-          </Form>
-
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary">Close</Button>
-          <Button variant="primary">Save changes</Button>
-        </Modal.Footer>
+          </Modal.Footer>
+        </Form>
       </Modal.Dialog>
     </Modal>
   );
