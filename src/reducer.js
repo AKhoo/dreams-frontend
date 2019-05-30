@@ -35,18 +35,6 @@ const selectedDream = (state = {data: null, loadState: false}, action) => {
   }
 };
 
-const messages = (state = [], action) => {
-  if (action.type === types.ADD_MESSAGE) {
-    if (action.payload.alertVariant === 'success') {
-      return [action.payload];
-    } else {
-      return [...state, action.payload];
-    }
-  } else {
-    return state;
-  }
-};
-
 const postDreamLoadState = (state = false, action) => {
   if (action.type === types.SET_POSTDREAM_LOADSTATE) {
     return action.payload;
@@ -68,7 +56,6 @@ const rootReducer = combineReducers({
   selectedDream,
   postDreamLoadState,
   postPurchaseLoadState,
-  messages,
 });
 
 export default rootReducer;
