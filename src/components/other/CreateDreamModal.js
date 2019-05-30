@@ -15,6 +15,7 @@ const CreateDreamModal = props => {
   return (
     <Modal
       show={showModal}
+      onHide={() => setShowModal(false)}
       centered
       dialogClassName="CreateDreamModal"
     >
