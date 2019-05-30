@@ -25,10 +25,23 @@ export const setSelectedDream = dreamData => {
   };
 };
 
-
 const setSelectedDreamLoadState = isLoading => {
   return {
     type: types.SET_SELECTEDDREAM_LOADSTATE,
+    payload: isLoading,
+  };
+};
+
+const setPostDreamLoadState = isLoading => {
+  return {
+    type: types.SET_POSTDREAM_LOADSTATE,
+    payload: isLoading,
+  };
+};
+
+const setPostPurchaseLoadState = isLoading => {
+  return {
+    type: types.SET_POSTPURCHASE_LOADSTATE,
     payload: isLoading,
   };
 };
@@ -85,6 +98,7 @@ export const postDream = data => {
     'post',
     'https://send-dreams.herokuapp.com/dreams',
     data,
+    setPostDreamLoadState,
   );
 };
 
@@ -93,6 +107,7 @@ export const postPurchase = data => {
     'post',
     'https://send-dreams.herokuapp.com/purchases',
     data,
+    setPostPurchaseLoadState,
   );
 };
 
