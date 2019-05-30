@@ -46,17 +46,21 @@ const setPostPurchaseLoadState = isLoading => {
   };
 };
 
-export const addMessage = (text, alertVariant) => {
-  return {
-    type: types.ADD_MESSAGE,
-    payload: {
-      text,
-      alertVariant,
-    },
-  };
-};
-
 // Other Functions
+
+export const addSuccessMessage = (messagesArray, text) => {
+  return [...messagesArray, {
+    text,
+    alertVariant: 'success',
+  }]
+}
+
+export const addErrorMessage = (messagesArray, text) => {
+  return [...messagesArray, {
+    text,
+    alertVariant: 'danger',
+  }]
+}
 
 const makeNetworkRequest = (method, url, data, loadStateAction) => {
   return new Promise((resolve, reject) => {
@@ -69,7 +73,6 @@ const makeNetworkRequest = (method, url, data, loadStateAction) => {
       .catch(err => {
         store.dispatch(loadStateAction(false));
         const message = err.response ? err.response.data.error : err.message;
-        store.dispatch(addMessage(message, 'danger'));
         reject(err);
       });
   });

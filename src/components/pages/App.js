@@ -8,7 +8,6 @@ import Landing from './Landing';
 import SendDream from './SendDream';
 import CreateDream from './CreateDream';
 
-import Messages from '../other/Messages';
 import Header from '../other/Header';
 
 import rootReducer from '../../reducer';
@@ -31,7 +30,6 @@ export class App extends Component {
         <Container>
           <Router>
             <Header />
-            <Messages />
 
             <Route path="/" exact component={Landing} />
             <Route path="/send" exact component={SendDream} />

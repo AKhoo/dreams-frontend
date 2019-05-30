@@ -3,14 +3,14 @@ import { CardElement, injectStripe } from 'react-stripe-elements';
 import { Button, Form } from 'react-bootstrap';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
-import { postPurchase } from '../../actions';
+import { postPurchase, addSuccessMessage, addErrorMessage } from '../../actions';
 
 const SendDreamForm = props => {
   const [fromEmail, setFromEmail] = useState('');
   const [toName, setToName] = useState('');
   const [toEmail, setToEmail] = useState('');
   const [message, setMessage] = useState('');
-  const { selectedDreamId } = props;
+  const { selectedDreamId, messages, setMessages } = props;
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -23,14 +23,19 @@ const SendDreamForm = props => {
       fee_in_cents: 50,
       stripe_token: token.id,
     };
-    const response = await postPurchase(data);
-    if (response.status === 200) {
+    postPurchase(data)
+    .then(() => {
+      setMessages(addSuccessMessage(messages, 'Purchase completed successfully. You should receive a confirmation email shortly. Thank you!'));
       setFromEmail('');
       setToEmail('');
       setToName('');
       setMessage('');
       window.cardElement.clear();
-    }
+    })
+    .catch(err => {
+      const message = err.response ? err.response.data.error : err.message;
+      setMessages(addErrorMessage(messages, message));
+    });
   };
 
   return (

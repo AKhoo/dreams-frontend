@@ -4,15 +4,17 @@ import { connect } from 'react-redux';
 import SpinnerModal from '../other/SpinnerModal';
 import CreateDreamModal from '../other/CreateDreamModal';
 import GuideElement from '../other/GuideElement';
+import Messages from '../other/Messages';
 
-import { getAndStoreElements, addMessage } from '../../actions';
+import { getAndStoreElements } from '../../actions';
 
 const CreateDream = props => {
-  const { elementsData, addSuccessMessage } = props;
+  const { elementsData } = props;
 
   const elementsArray = elementsData.data ? Object.values(elementsData.data) : null;
 
   const [selectedElement, setSelectedElement] = useState({name: null,id: null});
+  const [messages, setMessages] = useState([]);
   const [showModal, setShowModal] = useState(true);
   
   useEffect(() => {
@@ -24,6 +26,7 @@ const CreateDream = props => {
   return (
     <div>
       <SpinnerModal loadState={elementsData.loadState}/>
+      <Messages messages={messages}/>
 
       <h1>Capture Your Dream</h1>
       <p>What does your dream say? It could be a prediction about the future.</p>
@@ -46,9 +49,10 @@ const CreateDream = props => {
 
       {selectedElement.id && <CreateDreamModal 
         selectedElement={selectedElement} 
-        addSuccessMessage={addSuccessMessage}
         showModal={showModal}
         setShowModal={setShowModal}
+        messages={messages}
+        setMessages={setMessages}
         />}
     </div>
   );
@@ -60,13 +64,4 @@ const mapStateToProps = ({ elementsData }) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addSuccessMessage: text => dispatch(addMessage(text, 'success')),
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CreateDream);
+export default connect(mapStateToProps)(CreateDream);

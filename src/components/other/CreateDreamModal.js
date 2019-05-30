@@ -4,10 +4,10 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import FormInput from '../forms/FormInput';
 import FormTextarea from '../forms/FormTextarea';
 
-import { postDream } from '../../actions';
+import { postDream, addSuccessMessage, addErrorMessage } from '../../actions';
 
 const CreateDreamModal = props => {
-  const { selectedElement, addSuccessMessage, showModal, setShowModal } = props;
+  const { selectedElement, showModal, setShowModal, messages, setMessages } = props;
 
   const [email, setEmail] = useState('');
   const [description, setDescription] = useState('');  
@@ -31,12 +31,17 @@ const CreateDreamModal = props => {
             email,
             element_ids: selectedElement.id,
             description,
-          }).then(() => {
-            addSuccessMessage('Dream successfully submitted. Thank you!');
+          })
+          .then(() => {
+            setMessages(addSuccessMessage(messages, 'Dream successfully submitted. Thank you!'));
             setEmail('');
             setDescription('');
             setShowModal(false);
-          });
+          })
+          .catch(err => {
+            const message = err.response ? err.response.data.error : err.message;
+            setMessages(addErrorMessage(messages, message));
+          })
         }}
       >
           <Modal.Body>

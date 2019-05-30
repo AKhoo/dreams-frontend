@@ -18,10 +18,4 @@ const Messages = props => {
   );
 };
 
-const mapStateToProps = ({ messages }) => {
-  return {
-    messages,
-  };
-};
-
-export default connect(mapStateToProps)(Messages);
+export default Messages;
