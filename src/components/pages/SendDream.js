@@ -14,9 +14,10 @@ const SendDream = props => {
 
   const [messages, setMessages] = useState([]);
 
-  let selectedDreamId, selectedDreamElementName, selectedDreamElementDesc;
+  let selectedDreamId, selectedDreamPreview, selectedDreamElementName, selectedDreamElementDesc;
   if (selectedDream.data) {
     selectedDreamId = selectedDream.data.id;
+    selectedDreamPreview = selectedDream.data.attributes.redacted_description;
     const selectedDreamElementId =
       selectedDream.data.relationships.elements.data[0].id;
     if (elementsData.data) {
@@ -63,6 +64,7 @@ const SendDream = props => {
 
         <div className="dreamPreviewBox">
           <p>Dream ID: {selectedDreamId}</p>
+          <p>{selectedDreamPreview}</p>
         </div>
 
         <StripeProvider apiKey="pk_test_oeaRCbtNezkjFcikM3dEFl2w000KmVZVk1">

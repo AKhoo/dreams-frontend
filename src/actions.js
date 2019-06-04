@@ -19,6 +19,7 @@ const setElementsDataLoadState = isLoading => {
 };
 
 export const setSelectedDream = dreamData => {
+  dreamData.attributes.redacted_description = formatRedactedText(dreamData.attributes.redacted_description);
   return {
     type: types.SET_SELECTEDDREAM,
     payload: dreamData,
@@ -129,3 +130,5 @@ export const getAndStoreElements = () => {
     store.dispatch(setElementsData(elementDataObj));
   });
 };
+
+const formatRedactedText = text => text.replace(/(\* \*)|(\*)/g,"\u2588");
