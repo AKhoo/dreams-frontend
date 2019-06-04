@@ -17,6 +17,8 @@ const SendDreamForm = props => {
     const { token } = await props.stripe.createToken({ name: 'Name' });
     const data = {
       recipient_email: toEmail,
+      recipient_name: toName,
+      message,
       buyer_email: fromEmail,
       dream_id: selectedDreamId,
       amount_in_cents: 50,
@@ -40,7 +42,7 @@ const SendDreamForm = props => {
 
   return (
     <div className="checkout">
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <FormInput
           type="email"
           isRequired={true}
@@ -87,7 +89,7 @@ const SendDreamForm = props => {
           />
         </div>
 
-        <Button type="submit" variant="primary" onClick={handleSubmit}>
+        <Button type="submit" variant="primary">
           Send Good Fortune
         </Button>
       </Form>
