@@ -43,24 +43,28 @@ const SendDream = props => {
       <Messages messages={messages}/>
 
       <h1>Send a Dream</h1>
-      <Button variant="light" onClick={() => getAndStoreDream()}>
-        Next Dream
-      </Button>
-      <div>
-        <Image
-          src="https://img.icons8.com/ios-glyphs/30/000000/corgi.png"
-          rounded
-        />
-        <p>{selectedDreamElementName}</p>
-      </div>
-      <div>
-        <p>Someone dreamed of a {selectedDreamElementName}!</p>
-        <p>{selectedDreamElementDesc}</p>
-        <p>
-          For a small charitable donation, we’ll reveal the details of the dream
-          to the beneficiary, so they can benefit from this good omen.
-        </p>
-        <p>Dream ID: {selectedDreamId}</p>
+      <p>In Korean culture, dreams aren’t just passing subconscious thoughts; they are premonitions that can be passed on to others. A good dream can be bought or sold -- but for the dream to keep its good fortune, it must be kept a secret.</p>
+      <p>Below is a dream with a good omen that someone has written to us. For a minimum donation of $5 to the Make A Wish Foundation, we’ll reveal the details of the dream to whomever you choose (yourself or a friend), so the receiver can benefit from this good omen.</p>
+      <div className="bodyContentBox">
+        <div>
+          <p>Someone dreamed of a {selectedDreamElementName}!</p>
+          <p>{selectedDreamElementDesc}</p>
+          <p>
+            For a small charitable donation, we’ll reveal the details of the dream
+            to the beneficiary, so they can benefit from this good omen.
+          </p>
+          <div>
+            <Image
+              src="https://img.icons8.com/ios-glyphs/30/000000/corgi.png"
+              rounded
+            />
+            <p>{selectedDreamElementName}</p>
+        </div>
+
+        <div className="dreamPreviewBox">
+          <p>Dream ID: {selectedDreamId}</p>
+        </div>
+
         <StripeProvider apiKey="pk_test_oeaRCbtNezkjFcikM3dEFl2w000KmVZVk1">
           <div className="payment-form">
             <Elements>
@@ -71,6 +75,10 @@ const SendDream = props => {
             </Elements>
           </div>
         </StripeProvider>
+        <Button variant="light" onClick={() => getAndStoreDream()}>
+          Next Dream
+        </Button>
+        </div>
       </div>
     </div>
   );

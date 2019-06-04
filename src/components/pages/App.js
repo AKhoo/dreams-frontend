@@ -15,6 +15,7 @@ import rootReducer from '../../reducer';
 import '../../css/app.css';
 import '../../css/landing.css';
 import '../../css/create-dream.css';
+import '../../css/send-dream.css';
 import '../../css/header.css';
 
 export const store = createStore(
