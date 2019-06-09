@@ -17,7 +17,7 @@ const GuideElement = props => {
           {withButton && (
             <Button
               type="submit"
-              variant="success"
+              variant="primary"
               onClick={() => {
                 handleClick({ name: element.attributes.name, id: element.id });
                 setShowModal(true);

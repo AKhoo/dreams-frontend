@@ -82,7 +82,7 @@ const SendDream = props => {
             <p>{selectedDreamPreview}</p>
           </div>
 
-          <Button variant="success" onClick={() => setShowModal(true)}>
+          <Button variant="primary" onClick={() => setShowModal(true)}>
             Send This Dream
           </Button>
           <Button variant="light" onClick={() => getAndStoreDream()}>

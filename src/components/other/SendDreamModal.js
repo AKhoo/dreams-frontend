@@ -50,12 +50,12 @@ const SendDreamModal = props => {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" onClick={() => setShowModal(false)}>
+          <Button variant="light" onClick={() => setShowModal(false)}>
             Close
           </Button>
           <Button
             type="submit"
-            variant="success"
+            variant="primary"
             disabled={disabled}
             onClick={e => {
               e.preventDefault();

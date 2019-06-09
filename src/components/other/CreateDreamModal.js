@@ -97,10 +97,10 @@ const CreateDreamModal = props => {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="primary" onClick={() => setShowModal(false)}>
+            <Button variant="light" onClick={() => setShowModal(false)}>
               Close
             </Button>
-            <Button type="submit" variant="success" disabled={disabled}>
+            <Button type="submit" variant="primary" disabled={disabled}>
               Donate My Dream
             </Button>
           </Modal.Footer>
