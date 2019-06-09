@@ -14,6 +14,7 @@ const SendDreamForm = props => {
   const [toName, setToName] = useState('');
   const [toEmail, setToEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [donationCents, setDonationCents] = useState(0);
   const {
     selectedDreamId,
     messages,
@@ -32,7 +33,7 @@ const SendDreamForm = props => {
       message,
       buyer_email: fromEmail,
       dream_id: selectedDreamId,
-      amount_in_cents: 50,
+      amount_in_cents: donationCents,
       fee_in_cents: 50,
       stripe_token: token.id,
     };
@@ -95,6 +96,42 @@ const SendDreamForm = props => {
           value={message}
           handleChange={setMessage}
         />
+
+        <p>Donation:</p>
+        <Form.Group>
+          <Form.Check
+            inline
+            type="radio"
+            name="donation"
+            label="$5"
+            onClick={() => setDonationCents(500)}
+          />
+          <Form.Check
+            inline
+            type="radio"
+            name="donation"
+            label="$10"
+            onClick={() => setDonationCents(1000)}
+          />
+          <Form.Check
+            inline
+            type="radio"
+            name="donation"
+            label="$15"
+            onClick={() => setDonationCents(1500)}
+          />
+          <Form.Check
+            inline
+            type="radio"
+            name="donation"
+            label="$20"
+            onClick={() => setDonationCents(2000)}
+          />
+          <Form.Text className="text-muted">
+            A transaction fee of $0.30 + 2.9% will be subtracted from this
+            amount.
+          </Form.Text>
+        </Form.Group>
 
         <p>Payment:</p>
         <div id="card-element">
