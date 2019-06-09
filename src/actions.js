@@ -19,7 +19,9 @@ const setElementsDataLoadState = isLoading => {
 };
 
 export const setSelectedDream = dreamData => {
-  dreamData.attributes.redacted_description = formatRedactedText(dreamData.attributes.redacted_description);
+  dreamData.attributes.redacted_description = formatRedactedText(
+    dreamData.attributes.redacted_description,
+  );
   return {
     type: types.SET_SELECTEDDREAM,
     payload: dreamData,
@@ -50,18 +52,24 @@ const setPostPurchaseLoadState = isLoading => {
 // Other Functions
 
 export const addSuccessMessage = (messagesArray, text) => {
-  return [...messagesArray, {
-    text,
-    alertVariant: 'success',
-  }]
-}
+  return [
+    ...messagesArray,
+    {
+      text,
+      alertVariant: 'success',
+    },
+  ];
+};
 
 export const addErrorMessage = (messagesArray, text) => {
-  return [...messagesArray, {
-    text,
-    alertVariant: 'danger',
-  }]
-}
+  return [
+    ...messagesArray,
+    {
+      text,
+      alertVariant: 'danger',
+    },
+  ];
+};
 
 const makeNetworkRequest = (method, url, data, loadStateAction) => {
   return new Promise((resolve, reject) => {
@@ -73,7 +81,7 @@ const makeNetworkRequest = (method, url, data, loadStateAction) => {
       })
       .catch(err => {
         store.dispatch(loadStateAction(false));
-        const message = err.response ? err.response.data.error : err.message;
+        const _message = err.response ? err.response.data.error : err.message;
         reject(err);
       });
   });
@@ -84,7 +92,7 @@ export const getDream = dreamId => {
     'get',
     `https://send-dreams.herokuapp.com/dreams/${dreamId || 'random'}`,
     null,
-    setSelectedDreamLoadState
+    setSelectedDreamLoadState,
   );
 };
 
@@ -93,7 +101,7 @@ export const getElements = () => {
     'get',
     'https://send-dreams.herokuapp.com/elements',
     null,
-    setElementsDataLoadState
+    setElementsDataLoadState,
   );
 };
 
@@ -131,4 +139,4 @@ export const getAndStoreElements = () => {
   });
 };
 
-const formatRedactedText = text => text.replace(/(\* \*)|(\*)/g,"\u2588");
+const formatRedactedText = text => text.replace(/(\* \*)|(\*)/g, '\u2588');

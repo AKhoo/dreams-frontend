@@ -3,7 +3,11 @@ import { CardElement, injectStripe } from 'react-stripe-elements';
 import { Button, Form } from 'react-bootstrap';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
-import { postPurchase, addSuccessMessage, addErrorMessage } from '../../actions';
+import {
+  postPurchase,
+  addSuccessMessage,
+  addErrorMessage,
+} from '../../actions';
 
 const SendDreamForm = props => {
   const [fromEmail, setFromEmail] = useState('');
@@ -26,18 +30,23 @@ const SendDreamForm = props => {
       stripe_token: token.id,
     };
     postPurchase(data)
-    .then(() => {
-      setMessages(addSuccessMessage(messages, 'Purchase completed successfully. You should receive a confirmation email shortly. Thank you!'));
-      setFromEmail('');
-      setToEmail('');
-      setToName('');
-      setMessage('');
-      window.cardElement.clear();
-    })
-    .catch(err => {
-      const message = err.response ? err.response.data.error : err.message;
-      setMessages(addErrorMessage(messages, message));
-    });
+      .then(() => {
+        setMessages(
+          addSuccessMessage(
+            messages,
+            'Purchase completed successfully. You should receive a confirmation email shortly. Thank you!',
+          ),
+        );
+        setFromEmail('');
+        setToEmail('');
+        setToName('');
+        setMessage('');
+        window.cardElement.clear();
+      })
+      .catch(err => {
+        const message = err.response ? err.response.data.error : err.message;
+        setMessages(addErrorMessage(messages, message));
+      });
   };
 
   return (

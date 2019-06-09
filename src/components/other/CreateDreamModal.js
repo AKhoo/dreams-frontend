@@ -7,10 +7,16 @@ import FormTextarea from '../forms/FormTextarea';
 import { postDream, addSuccessMessage, addErrorMessage } from '../../actions';
 
 const CreateDreamModal = props => {
-  const { selectedElement, showModal, setShowModal, messages, setMessages } = props;
+  const {
+    selectedElement,
+    showModal,
+    setShowModal,
+    messages,
+    setMessages,
+  } = props;
 
   const [email, setEmail] = useState('');
-  const [description, setDescription] = useState('');  
+  const [description, setDescription] = useState('');
 
   return (
     <Modal
@@ -25,29 +31,44 @@ const CreateDreamModal = props => {
         </Modal.Header>
 
         <Form
-        onSubmit={e => {
-          e.preventDefault();
-          postDream({
-            email,
-            element_ids: selectedElement.id,
-            description,
-          })
-          .then(() => {
-            setMessages(addSuccessMessage(messages, 'Dream successfully submitted. Thank you!'));
-            setEmail('');
-            setDescription('');
-            setShowModal(false);
-          })
-          .catch(err => {
-            const message = err.response ? err.response.data.error : err.message;
-            setMessages(addErrorMessage(messages, message));
-          })
-        }}
-      >
+          onSubmit={e => {
+            e.preventDefault();
+            postDream({
+              email,
+              element_ids: selectedElement.id,
+              description,
+            })
+              .then(() => {
+                setMessages(
+                  addSuccessMessage(
+                    messages,
+                    'Dream successfully submitted. Thank you!',
+                  ),
+                );
+                setEmail('');
+                setDescription('');
+                setShowModal(false);
+              })
+              .catch(err => {
+                const message = err.response
+                  ? err.response.data.error
+                  : err.message;
+                setMessages(addErrorMessage(messages, message));
+              });
+          }}
+        >
           <Modal.Body>
             <p>You dreamed of a {selectedElement.name}? Tell us more!</p>
-            <p>“Donate” a good omen by sending us the details of your dream. If it’s usable, we’ll let others “buy” the omen in exchange for a small donation to a non-profit organization. </p>
-            <p>We keep your dream secret, and only reveal the details when the buyer has made a donation to charity. By donating a dream, you help others with their dreams!</p>
+            <p>
+              “Donate” a good omen by sending us the details of your dream. If
+              it’s usable, we’ll let others “buy” the omen in exchange for a
+              small donation to a non-profit organization.{' '}
+            </p>
+            <p>
+              We keep your dream secret, and only reveal the details when the
+              buyer has made a donation to charity. By donating a dream, you
+              help others with their dreams!
+            </p>
 
             <FormInput
               type="email"
@@ -73,7 +94,9 @@ const CreateDreamModal = props => {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button variant="primary" onClick={() => setShowModal(false)}>Close</Button>
+            <Button variant="primary" onClick={() => setShowModal(false)}>
+              Close
+            </Button>
             <Button type="submit" variant="success">
               Donate My Dream
             </Button>
