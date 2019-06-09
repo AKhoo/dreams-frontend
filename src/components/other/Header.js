@@ -11,7 +11,7 @@ export default () => {
         <Link className="inherit" to="/">
           <div className="logo-wrapper">
             <img
-              style={{ 'verticalAlign': 'middle' }}
+              style={{ verticalAlign: 'middle' }}
               src="https://img.icons8.com/nolan/64/000000/christmas-star.png"
             />
             <span>
@@ -26,10 +26,10 @@ export default () => {
       <Navbar.Collapse id="main-navbar">
         <Nav className="ml-auto nav-link-container">
           <Link className="inherit nav-link" to="/send">
-            Send a Dream
+            Browse dreams
           </Link>
-          <Link className="inherit nav-link ml-2" to="/donate">
-            Capture Your Dream
+          <Link className="inherit nav-link ml-md-2" to="/donate">
+            See the dream guide
           </Link>
         </Nav>
       </Navbar.Collapse>

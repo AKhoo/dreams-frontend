@@ -24,7 +24,6 @@ export const store = createStore(
 );
 
 export class App extends Component {
-
   render() {
     return (
       <Provider store={store}>
