@@ -42,7 +42,7 @@ const SendDreamForm = props => {
 
   return (
     <div className="checkout">
-      <Form onSubmit={handleSubmit}>
+      <Form id="sendDreamForm" onSubmit={handleSubmit}>
         <FormInput
           type="email"
           isRequired={true}
@@ -89,7 +89,7 @@ const SendDreamForm = props => {
           />
         </div>
 
-        <Button type="submit" variant="primary">
+        <Button type="submit" variant="primary" id="sendDreamSubmit">
           Send Good Fortune
         </Button>
       </Form>
