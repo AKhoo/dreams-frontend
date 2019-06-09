@@ -39,6 +39,7 @@ const SendDreamModal = props => {
                   selectedDreamId={selectedDreamId}
                   messages={messages}
                   setMessages={setMessages}
+                  setShowModal={setShowModal}
                 />
               </Elements>
             </div>

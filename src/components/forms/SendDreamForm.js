@@ -14,7 +14,7 @@ const SendDreamForm = props => {
   const [toName, setToName] = useState('');
   const [toEmail, setToEmail] = useState('');
   const [message, setMessage] = useState('');
-  const { selectedDreamId, messages, setMessages } = props;
+  const { selectedDreamId, messages, setMessages, setShowModal } = props;
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -42,6 +42,7 @@ const SendDreamForm = props => {
         setToName('');
         setMessage('');
         window.cardElement.clear();
+        setShowModal(false);
       })
       .catch(err => {
         const message = err.response ? err.response.data.error : err.message;
