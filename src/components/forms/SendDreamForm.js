@@ -134,8 +134,6 @@ const SendDreamForm = props => {
 
         <p>Payment:</p>
         <div id="card-element">
-          {/* How do I clear this element on postPurchase success? */}
-          {/* In parent component, create a var and a func that sets the var. Pass the func to CardElement */}
           <CardElement
             onReady={currentElement => {
               window.cardElement = currentElement;
