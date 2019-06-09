@@ -1,6 +1,7 @@
 .dreamPreviewBox {
   background-color: lightyellow;
-  padding: 20px;
+  padding: 24px;
+  border-radius: 10px;
 }
 
 #sendDreamSubmit {

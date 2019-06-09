@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Image, Button } from 'react-bootstrap';
+import { Image, Button, Container, Row, Col } from 'react-bootstrap';
 
 import SpinnerModal from '../other/SpinnerModal';
 import Messages from '../other/Messages';
@@ -63,31 +63,36 @@ const SendDream = props => {
       </p>
       <div className="bodyContentBox">
         <div>
-          <p>Someone dreamed of a {selectedDreamElementName}!</p>
-          <p>{selectedDreamElementDesc}</p>
-          <p>
-            For a small charitable donation, we’ll reveal the details of the
-            dream to the beneficiary, so they can benefit from this good omen.
-          </p>
-          <div>
-            <Image
-              src="https://img.icons8.com/ios-glyphs/30/000000/corgi.png"
-              rounded
-            />
-            <p>{selectedDreamElementName}</p>
-          </div>
-
-          <div className="dreamPreviewBox">
-            <p>Dream ID: {selectedDreamId}</p>
-            <p>{selectedDreamPreview}</p>
-          </div>
-
-          <Button variant="primary" onClick={() => setShowModal(true)}>
-            Send This Dream
-          </Button>
-          <Button variant="light" onClick={() => getAndStoreDream()}>
-            View Another Dream
-          </Button>
+          <Container>
+            <Row>
+              <Col>
+                <p>Someone dreamed of a {selectedDreamElementName}!</p>
+                <p>{selectedDreamElementDesc}</p>
+                <p>
+                  For a small charitable donation, we’ll reveal the details of
+                  the dream to the beneficiary, so they can benefit from this
+                  good omen.
+                </p>
+                <div className="dreamPreviewBox">
+                  <p>Dream ID: {selectedDreamId}</p>
+                  <p>{selectedDreamPreview}</p>
+                </div>
+                <Button variant="primary" onClick={() => setShowModal(true)}>
+                  Send This Dream
+                </Button>
+                <Button variant="light" onClick={() => getAndStoreDream()}>
+                  View Another Dream
+                </Button>
+              </Col>
+              <Col xs="auto">
+                <Image
+                  src="https://img.icons8.com/ios-glyphs/30/000000/corgi.png"
+                  rounded
+                />
+                <p>{selectedDreamElementName}</p>
+              </Col>
+            </Row>
+          </Container>
         </div>
       </div>
 

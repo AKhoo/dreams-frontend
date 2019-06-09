@@ -34,7 +34,6 @@ const SendDreamForm = props => {
       buyer_email: fromEmail,
       dream_id: selectedDreamId,
       amount_in_cents: donationCents,
-      fee_in_cents: 50,
       stripe_token: token.id,
     };
     postPurchase(data)
@@ -128,7 +127,8 @@ const SendDreamForm = props => {
             onClick={() => setDonationCents(2000)}
           />
           <Form.Text className="text-muted">
-            10% of this amount be allocated to cover our transaction and operating costs
+            10% of this amount be allocated to cover our transaction and
+            operating costs
           </Form.Text>
         </Form.Group>
 
