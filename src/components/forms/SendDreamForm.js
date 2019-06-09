@@ -128,8 +128,7 @@ const SendDreamForm = props => {
             onClick={() => setDonationCents(2000)}
           />
           <Form.Text className="text-muted">
-            A transaction fee of $0.30 + 2.9% will be subtracted from this
-            amount.
+            10% of this amount be allocated to cover our transaction and operating costs
           </Form.Text>
         </Form.Group>
 

@@ -26,7 +26,6 @@ const CreateDreamModal = props => {
       centered
       dialogClassName="CreateDreamModal"
     >
-      <Modal.Dialog>
         <Modal.Header closeButton>
           <Modal.Title>Finish Journaling</Modal.Title>
         </Modal.Header>
@@ -90,7 +89,6 @@ const CreateDreamModal = props => {
               controlId="CreateDreamDesc"
               label="Description"
               placeholder="Enter dream description"
-              subText="Describe your dream"
               value={description}
               handleChange={setDescription}
             />
@@ -105,7 +103,6 @@ const CreateDreamModal = props => {
             </Button>
           </Modal.Footer>
         </Form>
-      </Modal.Dialog>
     </Modal>
   );
 };
