@@ -27,7 +27,7 @@ export class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Container>
+        <Container className="mb-4">
           <Router>
             <Header />
 
