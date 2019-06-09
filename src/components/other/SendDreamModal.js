@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 
@@ -12,6 +12,8 @@ const SendDreamModal = props => {
     setMessages,
     selectedDreamId,
   } = props;
+
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <Modal
@@ -40,6 +42,7 @@ const SendDreamModal = props => {
                   messages={messages}
                   setMessages={setMessages}
                   setShowModal={setShowModal}
+                  setDisabled={setDisabled}
                 />
               </Elements>
             </div>
@@ -53,6 +56,7 @@ const SendDreamModal = props => {
           <Button
             type="submit"
             variant="success"
+            disabled={disabled}
             onClick={e => {
               e.preventDefault();
               document.getElementById('sendDreamSubmit').click();

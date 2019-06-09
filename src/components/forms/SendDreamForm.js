@@ -14,10 +14,17 @@ const SendDreamForm = props => {
   const [toName, setToName] = useState('');
   const [toEmail, setToEmail] = useState('');
   const [message, setMessage] = useState('');
-  const { selectedDreamId, messages, setMessages, setShowModal } = props;
+  const {
+    selectedDreamId,
+    messages,
+    setMessages,
+    setShowModal,
+    setDisabled,
+  } = props;
 
   const handleSubmit = async e => {
     e.preventDefault();
+    setDisabled(true);
     const { token } = await props.stripe.createToken({ name: 'Name' });
     const data = {
       recipient_email: toEmail,
@@ -47,7 +54,8 @@ const SendDreamForm = props => {
       .catch(err => {
         const message = err.response ? err.response.data.error : err.message;
         setMessages(addErrorMessage(messages, message));
-      });
+      })
+      .finally(() => setDisabled(false));
   };
 
   return (

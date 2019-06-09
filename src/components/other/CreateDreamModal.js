@@ -17,6 +17,7 @@ const CreateDreamModal = props => {
 
   const [email, setEmail] = useState('');
   const [description, setDescription] = useState('');
+  const [disabled, setDisabled] = useState(false);
 
   return (
     <Modal
@@ -33,6 +34,7 @@ const CreateDreamModal = props => {
         <Form
           onSubmit={e => {
             e.preventDefault();
+            setDisabled(true);
             postDream({
               email,
               element_ids: selectedElement.id,
@@ -54,7 +56,8 @@ const CreateDreamModal = props => {
                   ? err.response.data.error
                   : err.message;
                 setMessages(addErrorMessage(messages, message));
-              });
+              })
+              .finally(() => setDisabled(false));
           }}
         >
           <Modal.Body>
@@ -97,7 +100,7 @@ const CreateDreamModal = props => {
             <Button variant="primary" onClick={() => setShowModal(false)}>
               Close
             </Button>
-            <Button type="submit" variant="success">
+            <Button type="submit" variant="success" disabled={disabled}>
               Donate My Dream
             </Button>
           </Modal.Footer>
