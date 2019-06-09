@@ -59,13 +59,14 @@ const CreateDream = props => {
           dream.
         </p>
         {elementsArray
-          ? elementsArray.map(element => (
+          ? elementsArray.map((element, index) => (
               <GuideElement
                 element={element}
                 withButton={true}
                 handleClick={setSelectedElement}
                 setShowModal={setShowModal}
                 key={element.id}
+                isLastElement={index === elementsArray.length - 1}
               />
             ))
           : null}
