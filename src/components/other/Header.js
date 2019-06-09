@@ -25,11 +25,11 @@ export default () => {
 
       <Navbar.Collapse id="main-navbar">
         <Nav className="ml-auto nav-link-container">
-          <Link className="inherit nav-link" to="/send">
-            Browse dreams
-          </Link>
           <Link className="inherit nav-link ml-md-2" to="/donate">
-            See the dream guide
+            Donate Your Dream
+          </Link>
+          <Link className="inherit nav-link" to="/send">
+            Buy a Dream
           </Link>
         </Nav>
       </Navbar.Collapse>

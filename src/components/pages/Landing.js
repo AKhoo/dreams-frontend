@@ -66,7 +66,7 @@ const Landing = _props => {
               dreams.
             </p>
             <Link className="inherit" to="/donate">
-              <Button>See the dream guide</Button>
+              <Button>Donate Your Dream</Button>
             </Link>
           </div>
         </Col>
@@ -87,7 +87,7 @@ const Landing = _props => {
               of a dream and the good omen for yourself or a friend.
             </p>
             <Link className="inherit" to="/send">
-              <Button>Browse dreams</Button>
+              <Button>Buy a Dream</Button>
             </Link>
           </div>
         </Col>
