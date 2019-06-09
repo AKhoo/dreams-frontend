@@ -24,4 +24,5 @@
 .elementImage {
   border: 2px solid #674EA7;
   min-width: 100%;
+  padding: 10px;
 }
