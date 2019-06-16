@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 
+import { NewLineBreak } from '../../lib/helpers';
+
 const GuideElement = props => {
   const {
     element,
@@ -17,12 +19,19 @@ const GuideElement = props => {
             className="elementImage"
             src={element.attributes.image_url}
             fluid
-            roundedCircle
+            rounded
           />
         </Col>
         <Col xs={9} md={10}>
           <p className="elementName">{element.attributes.name}</p>
-          <p>{element.attributes.commentary}</p>
+          {element.attributes.commentary.split(NewLineBreak).map((str, key) => {
+            return (
+              <p key={key}>
+                {str}
+                <br />
+              </p>
+            );
+          })}
           {withButton && (
             <Button
               type="submit"
