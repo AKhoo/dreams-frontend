@@ -1,7 +1,18 @@
 .dreamPreviewBox {
-  background-color: lightyellow;
-  padding: 24px;
+  background-color: white;
+  padding: 0 24px;
   border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+.dreamId {
+  font-size: 0.8rem;
+  text-align: right;
+  margin-bottom: 0;
+}
+
+.bodyContentBox button {
+  margin-right: 10px;
 }
 
 #sendDreamSubmit {
