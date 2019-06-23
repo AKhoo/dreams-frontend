@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 
-import { NewLineBreak } from '../../lib/helpers';
+import { addLineBreaksToText } from '../../lib/helpers';
 
 const GuideElement = props => {
   const {
@@ -24,14 +24,7 @@ const GuideElement = props => {
         </Col>
         <Col xs={9} md={10}>
           <p className="elementName">{element.attributes.name}</p>
-          {element.attributes.commentary.split(NewLineBreak).map((str, key) => {
-            return (
-              <p key={key}>
-                {str}
-                <br />
-              </p>
-            );
-          })}
+          {addLineBreaksToText(element.attributes.commentary)}
           {withButton && (
             <Button
               type="submit"

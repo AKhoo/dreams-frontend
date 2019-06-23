@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Image, Button, Container, Row, Col } from 'react-bootstrap';
 
-import { NewLineBreak } from '../../lib/helpers';
+import { addLineBreaksToText } from '../../lib/helpers';
 
 import SpinnerModal from '../other/SpinnerModal';
 import Messages from '../other/Messages';
@@ -79,20 +79,13 @@ const SendDream = props => {
               </Col>
               <Col xs={9} md={10}>
                 <p className="elementName">Feature: {selectedDreamElementName}</p>
-                {selectedDreamElementDesc.split(NewLineBreak).map((str, key) => {
-                  return (
-                    <p key={key}>
-                      {str}
-                      <br />
-                    </p>
-                  );
-                })}
+                {addLineBreaksToText(selectedDreamElementDesc)}
               </Col>
             </Row>
           </Container>
           <div className="dreamPreviewBox">
             <p>The Dream:</p>
-            <p>{selectedDreamPreview}</p>
+            <p>{addLineBreaksToText(selectedDreamPreview)}</p>
             <p className="dreamId">Dream ID: {selectedDreamId}</p>
           </div>
           <Button variant="primary" onClick={() => setShowModal(true)}>
