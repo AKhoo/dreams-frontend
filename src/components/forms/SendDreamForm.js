@@ -14,7 +14,7 @@ const SendDreamForm = props => {
   const [toName, setToName] = useState('');
   const [toEmail, setToEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [donationCents, setDonationCents] = useState(0);
+  const [donationCents, setDonationCents] = useState(500);
   const {
     selectedDreamId,
     messages,
@@ -103,6 +103,7 @@ const SendDreamForm = props => {
             type="radio"
             name="donation"
             label="$5"
+            checked
             onClick={() => setDonationCents(500)}
           />
           <Form.Check
