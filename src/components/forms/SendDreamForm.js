@@ -25,37 +25,40 @@ const SendDreamForm = props => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setDisabled(true);
-    const { token } = await props.stripe.createToken({ name: 'Name' });
-    const data = {
-      recipient_email: toEmail,
-      recipient_name: toName,
-      message,
-      buyer_email: fromEmail,
-      dream_id: selectedDreamId,
-      amount_in_cents: donationCents,
-      stripe_token: token.id,
-    };
-    postPurchase(data)
-      .then(() => {
-        setMessages(
-          addSuccessMessage(
-            messages,
-            'Purchase completed successfully. You should receive a confirmation email shortly. Thank you!',
-          ),
-        );
-        setFromEmail('');
-        setToEmail('');
-        setToName('');
-        setMessage('');
-        window.cardElement.clear();
-        setShowModal(false);
-      })
-      .catch(err => {
-        const message = err.response ? err.response.data.error : err.message;
-        setMessages(addErrorMessage(messages, message));
-      })
-      .finally(() => setDisabled(false));
+    if (window.stripeComplete) {
+      setDisabled(true);
+      const { token } = await props.stripe.createToken({ name: 'Name' });
+      const data = {
+        recipient_email: toEmail,
+        recipient_name: toName,
+        message,
+        buyer_email: fromEmail,
+        dream_id: selectedDreamId,
+        amount_in_cents: donationCents,
+        stripe_token: token.id,
+      };
+      postPurchase(data)
+        .then(() => {
+          setMessages(
+            addSuccessMessage(
+              messages,
+              'Purchase completed successfully. You should receive a confirmation email shortly. Thank you!',
+            ),
+          );
+          setFromEmail('');
+          setToEmail('');
+          setToName('');
+          setMessage('');
+          window.cardElement.clear();
+          setShowModal(false);
+          window.scrollTo(0,0);
+        })
+        .catch(err => {
+          const message = err.response ? err.response.data.error : err.message;
+          setMessages(addErrorMessage(messages, message));
+        })
+        .finally(() => setDisabled(false));
+    }
   };
 
   return (
@@ -103,7 +106,7 @@ const SendDreamForm = props => {
             type="radio"
             name="donation"
             label="$5"
-            checked
+            defaultChecked
             onClick={() => setDonationCents(500)}
           />
           <Form.Check
@@ -138,6 +141,14 @@ const SendDreamForm = props => {
           <CardElement
             onReady={currentElement => {
               window.cardElement = currentElement;
+              window.stripeComplete = false;
+              currentElement.on("change", e => {
+                if (e.complete) {
+                  window.stripeComplete = true;
+                } else {
+                  window.stripeComplete = false;
+                }
+              })
             }}
           />
         </div>

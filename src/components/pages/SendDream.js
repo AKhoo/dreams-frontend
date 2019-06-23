@@ -19,6 +19,7 @@ const SendDream = props => {
   let selectedDreamId,
     selectedDreamPreview,
     selectedDreamElementName,
+    selectedDreamElementDimension,
     selectedDreamElementId;
   let selectedDreamElementDesc = '';
   if (selectedDream.data) {
@@ -28,6 +29,8 @@ const SendDream = props => {
     if (elementsData.data) {
       selectedDreamElementName =
         elementsData.data[selectedDreamElementId].attributes.name;
+      selectedDreamElementDimension =
+      elementsData.data[selectedDreamElementId].attributes.dimension;
       selectedDreamElementDesc =
         elementsData.data[selectedDreamElementId].attributes.commentary;
     }
@@ -79,13 +82,14 @@ const SendDream = props => {
               </Col>
               <Col xs={9} md={10}>
                 <p className="elementName">Feature: {selectedDreamElementName}</p>
+                <p className="elementName">Symbolizes: {selectedDreamElementDimension}</p>
                 {addLineBreaksToText(selectedDreamElementDesc)}
               </Col>
             </Row>
           </Container>
           <div className="dreamPreviewBox">
-            <p>The Dream:</p>
-            <p>{addLineBreaksToText(selectedDreamPreview)}</p>
+            <p>Dream preview:</p>
+            {addLineBreaksToText(selectedDreamPreview)}
             <p className="dreamId">Dream ID: {selectedDreamId}</p>
           </div>
           <Button variant="primary" onClick={() => setShowModal(true)}>

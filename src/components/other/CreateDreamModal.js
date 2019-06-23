@@ -49,6 +49,7 @@ const CreateDreamModal = props => {
               setEmail('');
               setDescription('');
               setShowModal(false);
+              window.scrollTo(0,0);
             })
             .catch(err => {
               const message = err.response
