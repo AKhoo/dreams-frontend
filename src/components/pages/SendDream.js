@@ -91,6 +91,7 @@ const SendDream = props => {
             </Row>
           </Container>
           <div className="dreamPreviewBox">
+            <p>The Dream:</p>
             <p>{selectedDreamPreview}</p>
             <p className="dreamId">Dream ID: {selectedDreamId}</p>
           </div>

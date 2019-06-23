@@ -1,7 +1,8 @@
 .bodyContentBox {
   border: 1px solid lightgray;
-  padding: 24px;
+  padding: 2rem;
   border-radius: 10px;
+  margin: 2rem 0;
 }
 
 .createDreamDetails {

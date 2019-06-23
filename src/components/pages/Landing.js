@@ -7,7 +7,7 @@ import LogoText from '../other/LogoText';
 const Landing = _props => {
   return (
     <Fragment>
-      <Row className="mt-5">
+      <Row className="landing-top">
         <Col xs={12} md={8}>
           <Row>
             <Col xs={12}>
@@ -44,10 +44,10 @@ const Landing = _props => {
       <div className="mobile-spacing" />
       <Row>
         <Col xs={12}>
-          <h4 className="subtitle-grey-italicized">Here&apos;s how it works</h4>
+          <h4 className="subtitle-grey-italicized">Here&apos;s how it works:</h4>
         </Col>
       </Row>
-      <Row className="mt-5">
+      <Row className="landing-bottom">
         <Col xs={12} md={6} className="mobile-bottom-spacing">
           <div className="info-box">
             <h4>
