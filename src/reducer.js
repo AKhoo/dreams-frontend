@@ -1,28 +1,51 @@
 import { combineReducers } from 'redux';
+import { types } from './types';
 
-const elementsData = (state = {}, action) => {
-  if (action.type === 'SET_ELEMENTSDATA') {
+const elementsData = (state = { data: null, loadState: false }, action) => {
+  switch (action.type) {
+    case types.SET_ELEMENTSDATA:
+      return {
+        data: action.payload,
+        loadState: false,
+      };
+    case types.SET_ELEMENTSDATA_LOADSTATE:
+      return {
+        data: state.data,
+        loadState: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const selectedDream = (state = { data: null, loadState: false }, action) => {
+  switch (action.type) {
+    case types.SET_SELECTEDDREAM:
+      return {
+        data: action.payload,
+        loadState: false,
+      };
+    case types.SET_SELECTEDDREAM_LOADSTATE:
+      return {
+        data: state.data,
+        loadState: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const postDreamLoadState = (state = false, action) => {
+  if (action.type === types.SET_POSTDREAM_LOADSTATE) {
     return action.payload;
   } else {
     return state;
   }
 };
 
-const loadState = (state = false, action) => {
-  if (action.type === 'SET_LOADSTATE') {
+const postPurchaseLoadState = (state = false, action) => {
+  if (action.type === types.SET_POSTPURCHASE_LOADSTATE) {
     return action.payload;
-  } else {
-    return state;
-  }
-};
-
-const messages = (state = [], action) => {
-  if (action.type === 'ADD_MESSAGE') {
-    if (action.payload.alertVariant === 'success') {
-      return [action.payload];
-    } else {
-      return [...state, action.payload];
-    }
   } else {
     return state;
   }
@@ -30,8 +53,9 @@ const messages = (state = [], action) => {
 
 const rootReducer = combineReducers({
   elementsData,
-  loadState,
-  messages,
+  selectedDream,
+  postDreamLoadState,
+  postPurchaseLoadState,
 });
 
 export default rootReducer;

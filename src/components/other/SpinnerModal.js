@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import Modal from 'react-bootstrap/Modal';
-import Spinner from 'react-bootstrap/Spinner';
+import { Modal, Spinner } from 'react-bootstrap';
 
 const SpinnerModal = props => {
   const { loadState } = props;
@@ -17,10 +15,4 @@ const SpinnerModal = props => {
   );
 };
 
-const mapStateToProps = ({ loadState }) => {
-  return {
-    loadState,
-  };
-};
-
-export default connect(mapStateToProps)(SpinnerModal);
+export default SpinnerModal;

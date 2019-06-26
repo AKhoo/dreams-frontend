@@ -1,4 +1,33 @@
 .subtitle-italicized {
   font-style: italic;
+  color: #8F7DC4;
+}
+
+.subtitle-grey-italicized {
+  font-style: italic;
   color: grey;
+}
+
+.info-box {
+  border: 1px solid lightgrey;
+  padding: 24px;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .mobile-spacing {
+    height: 24px;
+  }
+
+  .mobile-bottom-spacing {
+    margin-bottom: 24px;
+  }
+}
+
+.landing-top {
+  margin-top: 1rem;
+}
+
+.landing-bottom {
+  margin-top: 1rem;
 }
