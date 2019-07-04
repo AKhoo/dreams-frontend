@@ -10,6 +10,7 @@ import {
 } from '../../actions';
 
 const SendDreamForm = props => {
+  const [fromName, setFromName] = useState('');
   const [fromEmail, setFromEmail] = useState('');
   const [toName, setToName] = useState('');
   const [toEmail, setToEmail] = useState('');
@@ -33,6 +34,7 @@ const SendDreamForm = props => {
         recipient_name: toName,
         message,
         buyer_email: fromEmail,
+        buyer_name: fromName,
         dream_id: selectedDreamId,
         amount_in_cents: donationCents,
         stripe_token: token.id,
@@ -46,6 +48,7 @@ const SendDreamForm = props => {
             ),
           );
           setFromEmail('');
+          setFromName('');
           setToEmail('');
           setToName('');
           setMessage('');
@@ -64,6 +67,15 @@ const SendDreamForm = props => {
   return (
     <div className="checkout">
       <Form id="sendDreamForm" onSubmit={handleSubmit}>
+        <FormInput
+          type="text"
+          isRequired={true}
+          controlId="SendDreamFromName"
+          placeholder="Your name"
+          value={fromName}
+          handleChange={setFromName}
+        />
+
         <FormInput
           type="email"
           isRequired={true}
