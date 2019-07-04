@@ -71,7 +71,7 @@ const SendDreamForm = props => {
           type="text"
           isRequired={true}
           controlId="SendDreamFromName"
-          placeholder="Your name"
+          label="Your name"
           value={fromName}
           handleChange={setFromName}
         />
@@ -80,7 +80,7 @@ const SendDreamForm = props => {
           type="email"
           isRequired={true}
           controlId="SendDreamFromEmail"
-          placeholder="Your email address"
+          label="Your email"
           value={fromEmail}
           handleChange={setFromEmail}
         />
@@ -89,7 +89,7 @@ const SendDreamForm = props => {
           type="text"
           isRequired={true}
           controlId="SendDreamToName"
-          placeholder="Beneficiary name"
+          label="Beneficiary name"
           value={toName}
           handleChange={setToName}
         />
@@ -98,15 +98,15 @@ const SendDreamForm = props => {
           type="email"
           isRequired={true}
           controlId="SendDreamToEmail"
-          placeholder="Beneficiary email"
+          label="Beneficiary email"
           value={toEmail}
           handleChange={setToEmail}
         />
 
         <FormTextarea
-          rows={3}
+          rows={2}
           controlId="SendDreamMessage"
-          placeholder="Enter a message (optional)"
+          label="Enter a custom message (optional)"
           value={message}
           handleChange={setMessage}
         />

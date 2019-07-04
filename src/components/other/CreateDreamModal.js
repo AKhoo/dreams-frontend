@@ -78,18 +78,15 @@ const CreateDreamModal = props => {
             isRequired={true}
             controlId="CreateDreamEmail"
             label="Email address"
-            placeholder="Enter email"
-            subText="We'll never share your email with anyone else."
             value={email}
             handleChange={setEmail}
           />
 
           <FormTextarea
-            rows={3}
+            rows={5}
             isRequired={true}
             controlId="CreateDreamDesc"
-            label="Description"
-            placeholder="Enter dream description"
+            label="Describe your dream:"
             value={description}
             handleChange={setDescription}
           />
