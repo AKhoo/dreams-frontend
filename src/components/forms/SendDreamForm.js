@@ -157,8 +157,10 @@ const SendDreamForm = props => {
               currentElement.on("change", e => {
                 if (e.complete) {
                   window.stripeComplete = true;
+                  setDisabled(false);
                 } else {
                   window.stripeComplete = false;
+                  setDisabled(true);
                 }
               })
             }}

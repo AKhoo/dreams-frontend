@@ -13,7 +13,7 @@ const SendDreamModal = props => {
     selectedDreamId,
   } = props;
 
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(true);
 
   return (
     <Modal
@@ -27,7 +27,7 @@ const SendDreamModal = props => {
       </Modal.Header>
 
       <Modal.Body>
-        <p>We’ll need a few more details to complete the transaction. 
+        <p>We need a few more details to complete the transaction. 
           The dream will be sent directly to whomever you want to get the 
           good luck -- it can be you or someone else!
         </p>
