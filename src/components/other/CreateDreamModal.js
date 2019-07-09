@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 import FormInput from '../forms/FormInput';
 import FormTextarea from '../forms/FormTextarea';
@@ -78,18 +78,29 @@ const CreateDreamModal = props => {
             isRequired={true}
             controlId="CreateDreamEmail"
             label="Email address"
-            placeholder="Enter email"
-            subText="We'll never share your email with anyone else."
             value={email}
             handleChange={setEmail}
           />
 
+          <p>Brief description your dream:
+            <OverlayTrigger
+              placement="top"
+              overlay={
+                <Tooltip>
+                  Recommended length: 2-3 paragraphs. 
+                  First introduce the context or background if applicable.
+                  Then walk through your dream. Make sure you paint a picture of the element.
+                  How did the dream make you feel? What made you want to donate it?
+                </Tooltip>
+              }
+            >
+              <img class="describeDreamHelp" src="https://img.icons8.com/ios-glyphs/25/000000/help.png"/>
+            </OverlayTrigger>
+          </p>
           <FormTextarea
-            rows={3}
+            rows={5}
             isRequired={true}
             controlId="CreateDreamDesc"
-            label="Description"
-            placeholder="Enter dream description"
             value={description}
             handleChange={setDescription}
           />

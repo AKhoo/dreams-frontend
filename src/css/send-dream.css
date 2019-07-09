@@ -18,3 +18,7 @@
 #sendDreamSubmit {
   display: none;
 }
+
+.StripeElement {
+  margin-top: 3px;
+}

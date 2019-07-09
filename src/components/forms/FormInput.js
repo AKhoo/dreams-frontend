@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 
 const FormInput = props => {
   const {
@@ -13,16 +13,18 @@ const FormInput = props => {
     handleChange,
   } = props;
   return (
-    <Form.Group controlId={controlId}>
-      {label && <Form.Label>{label}</Form.Label>}
-      <Form.Control
-        type={type}
-        required={isRequired}
-        placeholder={placeholder}
-        value={value}
-        onChange={e => handleChange(e.target.value)}
-      />
-      <Form.Text className="text-muted">{subText}</Form.Text>
+    <Form.Group as={Row} controlId={controlId}>
+      {label && <Form.Label column sm="4">{label}</Form.Label>}
+      <Col sm="6">
+        <Form.Control
+          type={type}
+          required={isRequired}
+          placeholder={placeholder}
+          value={value}
+          onChange={e => handleChange(e.target.value)}
+        />
+        <Form.Text className="text-muted">{subText}</Form.Text>
+      </Col>
     </Form.Group>
   );
 };
