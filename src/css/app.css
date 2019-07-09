@@ -5,6 +5,10 @@
   margin: 20px auto; */
 }
 
+body {
+  margin-bottom: 50px;
+}
+
 .loadingModal .modal-content {
   background-color: transparent;
   border: 0px;
