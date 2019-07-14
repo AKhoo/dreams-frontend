@@ -31,7 +31,7 @@ const SendDreamModal = props => {
           The dream will be sent directly to whomever you want to get the 
           good luck -- it can be you or someone else!
         </p>
-        <StripeProvider apiKey="pk_test_oeaRCbtNezkjFcikM3dEFl2w000KmVZVk1">
+        <StripeProvider apiKey="pk_live_XzhX7uI8FrCVrLVztEMZwMUt00F44C56Yz">
           <div className="payment-form">
             <Elements>
               <SendDreamForm
