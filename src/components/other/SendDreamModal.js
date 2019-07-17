@@ -56,6 +56,7 @@ const SendDreamModal = props => {
           disabled={disabled}
           onClick={e => {
             e.preventDefault();
+            window.ga('send', 'event', 'Buy Dream', 'Confirm');
             document.getElementById('sendDreamSubmit').click();
           }}
         >

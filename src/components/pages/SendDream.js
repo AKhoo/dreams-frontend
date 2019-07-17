@@ -92,10 +92,22 @@ const SendDream = props => {
             {addLineBreaksToText(selectedDreamPreview)}
             <p className="dreamId">Dream ID: {selectedDreamId}</p>
           </div>
-          <Button variant="primary" onClick={() => setShowModal(true)}>
+          <Button 
+            variant="primary" 
+            onClick={() => {
+              window.ga('send', 'event', 'Buy Dream', 'Open Send Modal');
+              setShowModal(true);
+            }}
+            >
             Send This Dream
           </Button>
-          <Button variant="light" onClick={() => getAndStoreDream()}>
+          <Button 
+            variant="light" 
+            onClick={() => {
+              window.ga('send', 'event', 'Buy Dream', 'View Another Dream');
+              getAndStoreDream();
+            }}
+            >
             View Another Dream
           </Button>
         </div>

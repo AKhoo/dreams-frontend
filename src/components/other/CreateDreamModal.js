@@ -34,6 +34,7 @@ const CreateDreamModal = props => {
         onSubmit={e => {
           e.preventDefault();
           setDisabled(true);
+          window.ga('send', 'event', 'Submit Dream', 'Submit Form');
           postDream({
             email,
             element_ids: selectedElement.id,

@@ -31,6 +31,7 @@ const GuideElement = props => {
               variant="primary"
               onClick={() => {
                 handleClick({ name: element.attributes.name, id: element.id });
+                window.ga('send', 'event', 'Submit Dream', 'Open Submit Modal');
                 setShowModal(true);
               }}
             >
