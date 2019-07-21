@@ -7,6 +7,7 @@ import { Container } from 'react-bootstrap';
 import Landing from './Landing';
 import SendDream from './SendDream';
 import CreateDream from './CreateDream';
+import Faq from './Faq';
 
 import Header from '../other/Header';
 
@@ -17,6 +18,7 @@ import '../../css/landing.css';
 import '../../css/create-dream.css';
 import '../../css/send-dream.css';
 import '../../css/header.css';
+import '../../css/faq.css';
 
 export const store = createStore(
   rootReducer,
@@ -34,6 +36,7 @@ export class App extends Component {
             <Route path="/" exact component={Landing} />
             <Route path="/send" exact component={SendDream} />
             <Route path="/donate" exact component={CreateDream} />
+            <Route path="/faq" exact component={Faq} />
           </Router>
         </Container>
       </Provider>
