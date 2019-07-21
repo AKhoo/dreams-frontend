@@ -50,7 +50,7 @@ const CreateDreamModal = props => {
               setEmail('');
               setDescription('');
               setShowModal(false);
-              window.scrollTo(0,0);
+              window.scrollTo(0, 0);
             })
             .catch(err => {
               const message = err.response
@@ -83,19 +83,23 @@ const CreateDreamModal = props => {
             handleChange={setEmail}
           />
 
-          <p>Brief description your dream:
+          <p>
+            Brief description your dream:
             <OverlayTrigger
               placement="top"
               overlay={
                 <Tooltip>
-                  Recommended length: 2-3 paragraphs. 
-                  First introduce the context or background if applicable.
-                  Then walk through your dream. Make sure you paint a picture of the element.
-                  How did the dream make you feel? What made you want to donate it?
+                  Recommended length: 2-3 paragraphs. First introduce the
+                  context or background if applicable. Then walk through your
+                  dream. Make sure you paint a picture of the element. How did
+                  the dream make you feel? What made you want to donate it?
                 </Tooltip>
               }
             >
-              <img class="describeDreamHelp" src="https://img.icons8.com/ios-glyphs/25/000000/help.png"/>
+              <img
+                className="describeDreamHelp"
+                src="https://img.icons8.com/ios-glyphs/25/000000/help.png"
+              />
             </OverlayTrigger>
           </p>
           <FormTextarea

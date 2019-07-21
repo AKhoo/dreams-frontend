@@ -54,7 +54,7 @@ const SendDreamForm = props => {
           setMessage('');
           window.cardElement.clear();
           setShowModal(false);
-          window.scrollTo(0,0);
+          window.scrollTo(0, 0);
         })
         .catch(err => {
           const message = err.response ? err.response.data.error : err.message;
@@ -154,7 +154,7 @@ const SendDreamForm = props => {
             onReady={currentElement => {
               window.cardElement = currentElement;
               window.stripeComplete = false;
-              currentElement.on("change", e => {
+              currentElement.on('change', e => {
                 if (e.complete) {
                   window.stripeComplete = true;
                   setDisabled(false);
@@ -162,7 +162,7 @@ const SendDreamForm = props => {
                   window.stripeComplete = false;
                   setDisabled(true);
                 }
-              })
+              });
             }}
           />
         </div>

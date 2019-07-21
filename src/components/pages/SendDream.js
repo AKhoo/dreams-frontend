@@ -25,12 +25,13 @@ const SendDream = props => {
   if (selectedDream.data) {
     selectedDreamId = selectedDream.data.id;
     selectedDreamPreview = selectedDream.data.attributes.redacted_description;
-    selectedDreamElementId = selectedDream.data.relationships.elements.data[0].id;
+    selectedDreamElementId =
+      selectedDream.data.relationships.elements.data[0].id;
     if (elementsData.data) {
       selectedDreamElementName =
         elementsData.data[selectedDreamElementId].attributes.name;
       selectedDreamElementDimension =
-      elementsData.data[selectedDreamElementId].attributes.dimension;
+        elementsData.data[selectedDreamElementId].attributes.dimension;
       selectedDreamElementDesc =
         elementsData.data[selectedDreamElementId].attributes.commentary;
     }
@@ -57,27 +58,37 @@ const SendDream = props => {
       <p>
         According to legend, Kim Munhui of the Silla Dynasty bought a good dream from her sister and later became the queen. Many people continue to “buy” dreams today in hopes of collecting on the good omens that comes with it. For the dream to keep its good fortune, its contents must be kept secret until it has been bought.
       </p>
+      <p>Below is a dream with a good omen that someone has written to us.</p>
       <p>
-      Below is a good dream that someone has written to us. 
+      Below is a good dream that someone has written to us.
       </p>
       <p>
       For a minimum donation of $5 to the Make A Wish Foundation, we’ll reveal the details of the dream to whomever you choose (yourself or a friend), so the receiver can benefit from this good omen.
       </p>
       <div className="bodyContentBox">
         <div>
-          <Container className='mb-4'>
+          <Container className="mb-4">
             <Row>
               <Col xs={3} md={2}>
                 <Image
                   className="elementImage"
-                  src={selectedDreamElementId && elementsData.data ? elementsData.data[selectedDreamElementId].attributes.image_url : null}
+                  src={
+                    selectedDreamElementId && elementsData.data
+                      ? elementsData.data[selectedDreamElementId].attributes
+                          .image_url
+                      : null
+                  }
                   fluid
                   rounded
                 />
               </Col>
               <Col xs={9} md={10}>
-                <p className="elementName">Feature: {selectedDreamElementName}</p>
-                <p className="elementName">Symbolizes: {selectedDreamElementDimension}</p>
+                <p className="elementName">
+                  Feature: {selectedDreamElementName}
+                </p>
+                <p className="elementName">
+                  Symbolizes: {selectedDreamElementDimension}
+                </p>
                 {addLineBreaksToText(selectedDreamElementDesc)}
               </Col>
             </Row>
@@ -87,22 +98,22 @@ const SendDream = props => {
             {addLineBreaksToText(selectedDreamPreview)}
             <p className="dreamId">Dream ID: {selectedDreamId}</p>
           </div>
-          <Button 
-            variant="primary" 
+          <Button
+            variant="primary"
             onClick={() => {
               window.ga('send', 'event', 'Buy Dream', 'Open Send Modal');
               setShowModal(true);
             }}
-            >
+          >
             Send This Dream
           </Button>
-          <Button 
-            variant="light" 
+          <Button
+            variant="light"
             onClick={() => {
               window.ga('send', 'event', 'Buy Dream', 'View Another Dream');
               getAndStoreDream();
             }}
-            >
+          >
             View Another Dream
           </Button>
         </div>

@@ -14,7 +14,11 @@ const FormInput = props => {
   } = props;
   return (
     <Form.Group as={Row} controlId={controlId}>
-      {label && <Form.Label column sm="4">{label}</Form.Label>}
+      {label && (
+        <Form.Label column sm="4">
+          {label}
+        </Form.Label>
+      )}
       <Col sm="6">
         <Form.Control
           type={type}
