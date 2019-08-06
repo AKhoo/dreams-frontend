@@ -62,7 +62,6 @@ const SendDream = props => {
         with it. For the dream to keep its good fortune, its contents must be
         kept secret until it has been bought.
       </p>
-      <p>Below is a dream with a good omen that someone has written to us.</p>
       <p>Below is a good dream that someone has written to us.</p>
       <p>
         For a minimum donation of $5 to the Make A Wish Foundation, we’ll reveal
