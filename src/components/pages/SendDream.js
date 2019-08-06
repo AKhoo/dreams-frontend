@@ -56,14 +56,18 @@ const SendDream = props => {
 
       <h1>Buy a Dream</h1>
       <p>
-        According to legend, Kim Munhui of the Silla Dynasty bought a good dream from her sister and later became the queen. Many people continue to “buy” dreams today in hopes of collecting on the good omens that comes with it. For the dream to keep its good fortune, its contents must be kept secret until it has been bought.
+        According to legend, Kim Munhui of the Silla Dynasty bought a good dream
+        from her sister and later became the queen. Many people continue to
+        “buy” dreams today in hopes of collecting on the good omens that comes
+        with it. For the dream to keep its good fortune, its contents must be
+        kept secret until it has been bought.
       </p>
       <p>Below is a dream with a good omen that someone has written to us.</p>
+      <p>Below is a good dream that someone has written to us.</p>
       <p>
-      Below is a good dream that someone has written to us.
-      </p>
-      <p>
-      For a minimum donation of $5 to the Make A Wish Foundation, we’ll reveal the details of the dream to whomever you choose (yourself or a friend), so the receiver can benefit from this good omen.
+        For a minimum donation of $5 to the Make A Wish Foundation, we’ll reveal
+        the details of the dream to whomever you choose (yourself or a friend),
+        so the receiver can benefit from this good omen.
       </p>
       <div className="bodyContentBox">
         <div>

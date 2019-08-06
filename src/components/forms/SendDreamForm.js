@@ -148,7 +148,9 @@ const SendDreamForm = props => {
           </Form.Text>
         </Form.Group>
 
-        <p>Secure Payment <Image className="securePayment" src="lock.png"/></p>
+        <p>
+          Secure Payment <Image className="securePayment" src="lock.png" />
+        </p>
         <div id="card-element">
           <CardElement
             onReady={currentElement => {
