@@ -90,7 +90,7 @@ const makeNetworkRequest = (method, url, data, loadStateAction) => {
 export const getDream = dreamId => {
   return makeNetworkRequest(
     'get',
-    `https://send-dreams.herokuapp.com/dreams/${dreamId || 'random'}`,
+    `https://send-dreams-staging.herokuapp.com/dreams/${dreamId || 'random'}`,
     null,
     setSelectedDreamLoadState,
   );
@@ -99,7 +99,7 @@ export const getDream = dreamId => {
 export const getElements = () => {
   return makeNetworkRequest(
     'get',
-    'https://send-dreams.herokuapp.com/elements',
+    'https://send-dreams-staging.herokuapp.com/elements',
     null,
     setElementsDataLoadState,
   );
@@ -108,7 +108,7 @@ export const getElements = () => {
 export const postDream = data => {
   return makeNetworkRequest(
     'post',
-    'https://send-dreams.herokuapp.com/dreams',
+    'https://send-dreams-staging.herokuapp.com/dreams',
     data,
     setPostDreamLoadState,
   );
@@ -117,7 +117,7 @@ export const postDream = data => {
 export const postPurchase = data => {
   return makeNetworkRequest(
     'post',
-    'https://send-dreams.herokuapp.com/purchases',
+    'https://send-dreams-staging.herokuapp.com/purchases',
     data,
     setPostPurchaseLoadState,
   );

@@ -32,3 +32,9 @@
 .describeDreamHelp {
   margin-left: 5px;
 }
+
+.readMore {
+  color: #674EA7;
+  font-style: italic;
+  cursor: pointer;
+};

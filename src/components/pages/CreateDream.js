@@ -33,30 +33,17 @@ const CreateDream = props => {
       <SpinnerModal loadState={elementsData.loadState} />
       <Messages messages={messages} />
 
-      <h1>Capture Your Dream</h1>
+      <h1>Donate Your Dream</h1>
       <p>
-        What does your dream say? It could be a prediction about the future.
+        If you had a coherent dream (as opposed to a dream that is very scattered and without sequence), it could be a prediction about the future. 
       </p>
-      <p>
-        In Korean dream interpretation, there are good dreams (길몽), bad dreams
-        (흉몽), and nightmares (악몽). There are also “conception dreams”
-        (태몽), which are dreams a woman (or another woman very close to her)
-        has when she gets pregnant.
-      </p>
-      <p>
-        For an omen to apply, it must be a major element of your dream. Your
-        dream also needs to have a coherent thread. If your dream is very
-        scattered and without sequence, then it is known as a “dog dream”
-        (개꿈), which is a dream without special meaning.
-      </p>
-
       <div className="bodyContentBox">
         <h2>Good Omens</h2>
-        <p>If your dream includes one of the symbols below, congratulations!</p>
         <p>
-          You can keep your dream a secret to retain the good fortune, or you
-          can donate it for others to benefit by telling us the details of your
-          dream.
+          Below are a list of symbols believed to be lucky in Korean culture, as found in academic studies, newspapers and cultural blogs. 
+        </p>
+        <p>
+        Were any of them a major element of your dream? If yes, congratulations! You had a lucky dream 🙂. You can “donate” the dream for others to benefit by telling us the details of your dream. Or, you can keep it a secret to retain the good fortune for yourself. 
         </p>
         {elementsArray
           ? elementsArray.map((element, index) => (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Image, Button } from 'react-bootstrap';
 
 import { addLineBreaksToText } from '../../lib/helpers';
@@ -11,6 +11,19 @@ const GuideElement = props => {
     handleClick,
     setShowModal,
   } = props;
+
+  const [readMore, setReadMore] = useState(false);
+  const fullCommentary = addLineBreaksToText(element.attributes.commentary);
+  let shortenedCommentary = fullCommentary;
+  if (element.attributes.commentary.split(" ").length > 35) {
+    shortenedCommentary = addLineBreaksToText(element.attributes.commentary, 35, setReadMore);
+  };
+
+  let displayedCommentary = shortenedCommentary;
+  if (readMore) {
+    displayedCommentary = fullCommentary;
+  };
+
   return (
     <Container className={isLastElement ? '' : 'mb-4'}>
       <Row>
@@ -24,7 +37,8 @@ const GuideElement = props => {
         </Col>
         <Col xs={9} md={10}>
           <p className="elementName">{element.attributes.name}</p>
-          {addLineBreaksToText(element.attributes.commentary)}
+          <p>Symbolizes: {element.attributes.dimension}</p>
+          {displayedCommentary}
           {withButton && (
             <Button
               type="submit"
