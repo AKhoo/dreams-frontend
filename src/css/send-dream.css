@@ -22,3 +22,12 @@
 .StripeElement {
   margin-top: 3px;
 }
+
+.securePayment {
+  height: 20px;
+  vertical-align: top;
+}
+
+#sendDreamForm > .row {
+  margin-bottom: 0rem;
+}

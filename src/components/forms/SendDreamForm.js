@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CardElement, injectStripe } from 'react-stripe-elements';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Image } from 'react-bootstrap';
 import FormInput from './FormInput';
 import FormTextarea from './FormTextarea';
 import {
@@ -89,7 +89,7 @@ const SendDreamForm = props => {
           type="text"
           isRequired={true}
           controlId="SendDreamToName"
-          label="Beneficiary name"
+          label="Recipient name"
           value={toName}
           handleChange={setToName}
         />
@@ -98,7 +98,7 @@ const SendDreamForm = props => {
           type="email"
           isRequired={true}
           controlId="SendDreamToEmail"
-          label="Beneficiary email"
+          label="Recipient email"
           value={toEmail}
           handleChange={setToEmail}
         />
@@ -148,7 +148,7 @@ const SendDreamForm = props => {
           </Form.Text>
         </Form.Group>
 
-        <p>Payment:</p>
+        <p>Secure Payment <Image className="securePayment" src="lock.png"/></p>
         <div id="card-element">
           <CardElement
             onReady={currentElement => {
