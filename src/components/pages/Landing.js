@@ -44,7 +44,9 @@ const Landing = _props => {
       <div className="mobile-spacing" />
       <Row>
         <Col xs={12}>
-          <h4 className="subtitle-grey-italicized">Here&apos;s how it works:</h4>
+          <h4 className="subtitle-grey-italicized">
+            Here&apos;s how it works:
+          </h4>
         </Col>
       </Row>
       <Row className="landing-bottom">

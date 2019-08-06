@@ -15,14 +15,18 @@ const GuideElement = props => {
   const [readMore, setReadMore] = useState(false);
   const fullCommentary = addLineBreaksToText(element.attributes.commentary);
   let shortenedCommentary = fullCommentary;
-  if (element.attributes.commentary.split(" ").length > 35) {
-    shortenedCommentary = addLineBreaksToText(element.attributes.commentary, 35, setReadMore);
-  };
+  if (element.attributes.commentary.split(' ').length > 35) {
+    shortenedCommentary = addLineBreaksToText(
+      element.attributes.commentary,
+      35,
+      setReadMore,
+    );
+  }
 
   let displayedCommentary = shortenedCommentary;
   if (readMore) {
     displayedCommentary = fullCommentary;
-  };
+  }
 
   return (
     <Container className={isLastElement ? '' : 'mb-4'}>

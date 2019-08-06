@@ -31,6 +31,9 @@ export default () => {
           <Link className="inherit nav-link" to="/send">
             Buy a Dream
           </Link>
+          <Link className="inherit nav-link" to="/faq">
+            FAQ
+          </Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
