@@ -34,7 +34,10 @@
 }
 
 .readMore {
-  color: #674EA7;
-  font-style: italic;
+  color: #007bff;
   cursor: pointer;
 };
+
+.readMore:hover {
+  text-decoration: underline;
+}
