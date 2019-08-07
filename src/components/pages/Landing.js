@@ -12,24 +12,18 @@ const Landing = _props => {
           <Row>
             <Col xs={12}>
               <h1>
-                In Korean culture, good dreams bring good omens which can be
-                used or given to someone else.
+              Buy dreams other people have donated -- and the good luck that comes with them.
               </h1>
             </Col>
           </Row>
           <Row className="mt-3">
-            <Col xs={12}>
-              <h3>
-                <LogoText /> is an online experiment where anyone can buy good
-                dreams and the good luck that comes with it.
-              </h3>
-            </Col>
-          </Row>
-          <Row className="mt-3">
-            <Col xs={12}>
-              <h3 className="subtitle-italicized">
-                All proceeds go to charity.
-              </h3>
+            <Col xs={12} className="landingDescription">
+              <h4>
+              In Korean culture, good dreams bring good omens. Pig dreams, for example, are believed to symbolize wealth and well-being.
+              </h4>
+              <h4>
+              People can let others “buy” their dream. In exchange for a small amount of money, the buyer receives the details of the dream, and the good luck it’s believed to bring.
+              </h4>
             </Col>
           </Row>
           <div className="mobile-spacing" />
@@ -42,13 +36,6 @@ const Landing = _props => {
         </Col>
       </Row>
       <div className="mobile-spacing" />
-      <Row>
-        <Col xs={12}>
-          <h4 className="subtitle-grey-italicized">
-            Here&apos;s how it works:
-          </h4>
-        </Col>
-      </Row>
       <Row className="landing-bottom">
         <Col xs={12} md={6} className="mobile-bottom-spacing">
           <div className="info-box">
@@ -60,12 +47,7 @@ const Landing = _props => {
               dream interpretation.
             </p>
             <p>
-              If your dream had a good omen, you have two choices: You can
-              retain the omen by keeping the dream a secret. Or, you can
-              “donate” the omen by sending the details of your dream to us.
-              We’ll let others “buy” the omen in exchange for a small donation
-              to a non-profit organization. Your dreams help others with their
-              dreams.
+              You can “donate” a recent dream by sharing the details of the dream with us.
             </p>
             <Link className="inherit" to="/donate">
               <Button>Donate Your Dream</Button>
@@ -78,15 +60,10 @@ const Landing = _props => {
               <b>Interested in good luck?</b>
             </h4>
             <p>
-              According to legend, Kim Munhui of the Silla Dynasty bought a good
-              dream from her sister and later became the queen. Many people
-              continue to “buy” dreams today in hopes of collecting on the good
-              omens that comes with it.
+              We’ve collected dreams with good omens. For a small charitable donation, you can “buy” the details of a dream and the good omen for yourself or a friend.
             </p>
             <p>
-              We’ve collected dreams with good omens from people around the
-              world. For a small charitable donation, you can “buy” the details
-              of a dream and the good omen for yourself or a friend.
+              All proceeds go to the Make-a-Wish foundation.
             </p>
             <Link className="inherit" to="/send">
               <Button>Buy a Dream</Button>

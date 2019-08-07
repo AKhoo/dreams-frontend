@@ -33,6 +33,11 @@ h4 {
   color: grey;
 }
 
+.landingDescription > h4 {
+  font-size: 1.45rem;
+  margin-bottom: 1.5rem;
+}
+
 p {
   color: grey;
 }
